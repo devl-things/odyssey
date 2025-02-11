@@ -13,3 +13,4 @@ services:
       - "${VOLUME_PATH}:/app"  # Maps your local project folder to /app in the container
     stdin_open: true
     tty: true
+    command: /bin/sh -c "npm install && vite --host"
