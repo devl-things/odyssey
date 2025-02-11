@@ -1,0 +1,15 @@
+version: "3.8"
+name: odyssey
+services:
+  web:
+    build: 
+      context: ./odyssey-web
+      dockerfile: Dockerfile.dev
+    image: vite-dev
+    container_name: "${CONTAINER_NAME}"
+    ports:
+      - "${PORT}:5173"
+    volumes:
+      - "${VOLUME_PATH}:/app"  # Maps your local project folder to /app in the container
+    stdin_open: true
+    tty: true

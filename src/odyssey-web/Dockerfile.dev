@@ -1,0 +1,14 @@
+# Use an official Node.js image as base
+FROM node:23-alpine
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Install Vite globally
+RUN npm install -g vite
+
+# Expose port 5173 (default Vite port)
+EXPOSE 5173
+
+# Start the Vite development server
+CMD ["vite", "--host"]
