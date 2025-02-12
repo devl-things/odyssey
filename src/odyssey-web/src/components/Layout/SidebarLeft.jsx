@@ -1,18 +1,20 @@
 // src/components/Layout/SidebarLeft.js
-import {useEffect} from 'react';
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const SidebarLeft = ({ isVisible, children }) => {
 
     return (
-        <nav id="sidebar-left" className={`sidebar ${isVisible ? '' : 'collapsed'}`} data-sidebar-side="left">
+        <nav id="sidebar-left" className={`sidebar ${isVisible ? '' : 'collapsed'}`} >
             <div className="sidebar-content">
-                <h3>Left Sidebar</h3>
-                <div>
-                    {children}
-                </div>
+                {children}
             </div>
         </nav>
     );
 };
+SidebarLeft.propTypes =
+{
+    isVisible: PropTypes.bool.isRequired,
+}
 
 export default SidebarLeft;

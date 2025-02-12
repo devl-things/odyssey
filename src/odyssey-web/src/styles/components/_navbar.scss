@@ -42,10 +42,11 @@ $navbar-input-bg-dark: $dark !default;
 
 @include color-mode(dark) {
   .input-group-navbar {
+
     .form-control,
     .btn {
       background: $navbar-input-bg-dark;
-  
+
       &:focus {
         background: $navbar-input-bg-dark;
       }
@@ -53,12 +54,12 @@ $navbar-input-bg-dark: $dark !default;
   }
 }
 
-.navbar-expand > .container,
-.navbar-expand > .container-fluid,
-.navbar-expand > .container-lg,
-.navbar-expand > .container-md,
-.navbar-expand > .container-sm,
-.navbar-expand > .container-xl {
+.navbar-expand>.container,
+.navbar-expand>.container-fluid,
+.navbar-expand>.container-lg,
+.navbar-expand>.container-md,
+.navbar-expand>.container-sm,
+.navbar-expand>.container-xl {
   padding-right: 0;
   padding-left: 0;
 }
@@ -70,15 +71,6 @@ $navbar-input-bg-dark: $dark !default;
 @include color-mode(dark) {
   .navbar-bg {
     background: $navbar-bg-dark;
-  }
-}
-
-.navbar-align {
-  body:not([data-sidebar-position=right]) & {
-    margin-left: auto;
-  }
-  html[data-sidebar-position=right] & {
-    margin-right: auto;
   }
 }
 
@@ -151,7 +143,8 @@ $navbar-input-bg-dark: $dark !default;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
   .navbar .avatar {
     max-height: 47px;
   }
@@ -206,6 +199,7 @@ $navbar-input-bg-dark: $dark !default;
   .nav-theme-toggle-light {
     display: none;
   }
+
   .nav-theme-toggle-dark {
     display: inline-block;
   }
@@ -216,6 +210,7 @@ $navbar-input-bg-dark: $dark !default;
     .nav-theme-toggle-light {
       display: inline-block;
     }
+
     .nav-theme-toggle-dark {
       display: none;
     }

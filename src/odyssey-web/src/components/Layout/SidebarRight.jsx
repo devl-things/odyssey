@@ -3,16 +3,13 @@ import React from 'react';
 
 const SidebarRight = ({ isVisible, children }) => {
 
-  return (
-    <nav id="sidebar-right" className={`sidebar ${isVisible ? '' : 'collapsed'}`} data-sidebar-side="right">
-        <div className="sidebar-content">
-            <h3>Right Sidebar</h3>
-            <div>
+    return (
+        <nav id="sidebar-right" className={`sidebar ${isVisible ? '' : 'collapsed'}`} >
+            <div className="sidebar-content">
                 {children}
             </div>
-        </div>
-    </nav>
-);
+        </nav>
+    );
 };
 
 export default SidebarRight;

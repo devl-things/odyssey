@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '../assets/vite.svg'
+import logo from '../assets/logo.png'
 import axios from 'axios';
 import * as go from 'gojs';
 import '../styles/App.scss';
@@ -34,7 +33,7 @@ function Example() {
           margin: 10,
           font: 'bold 12pt sans-serif',
         },
-        new go.Binding('text', 'key'))
+          new go.Binding('text', 'key'))
       );
 
     // Define the link template
@@ -64,36 +63,36 @@ function Example() {
   return (
     <div className="App">
       <div className="main">
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          Count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR. Is it? Maybe it is. Look
+        <div>
+          <a href="https://vite.dev" target="_blank">
+            <img src={logo} className="logo" alt="Vite logo" />
+          </a>
+          <a href="https://react.dev" target="_blank">
+            <img src={logo} className="logo react" alt="React logo" />
+          </a>
+        </div>
+        <h1>Vite + React</h1>
+        <div className="card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            Count is {count}
+          </button>
+          <p>
+            Edit <code>src/App.jsx</code> and save to test HMR. Is it? Maybe it is. Look
+          </p>
+          <h1>Fetched Data:</h1>
+          <ul>
+            {data.map(item => (
+              <li key={item.id}>{item.title}</li>
+            ))}
+          </ul>
+        </div>
+        <div
+          ref={diagramRef}
+          style={{ width: '100%', height: '500px', border: '1px solid black' }}
+        />
+        <p className="read-the-docs">
+          Click on the Vite and React logos to learn more
         </p>
-        <h1>Fetched Data:</h1>
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-      </div>
-      <div
-      ref={diagramRef}
-      style={{ width: '100%', height: '500px', border: '1px solid black' }}
-    />
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       </div>
     </div>
   )

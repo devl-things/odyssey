@@ -73,7 +73,7 @@ a.sidebar-link {
   }
 }
 
-.sidebar-item.active > .sidebar-link,
+.sidebar-item.active>.sidebar-link,
 .sidebar-item.active .sidebar-link:hover {
   @include sidebar-theme("color", $sidebar-link-active-color);
 
@@ -169,14 +169,14 @@ a.sidebar-link {
   width: 26px;
   height: 26px;
   display: flex;
-}
 
-body:not([data-sidebar-position=right]) .sidebar-toggle {
-  margin-right: $spacer;
-}
+  &.right {
+    margin-left: $spacer;
+  }
 
-html[data-sidebar-position=right] .sidebar-toggle {
-  margin-left: $spacer;
+  &.left {
+    margin-right: $spacer;
+  }
 }
 
 // Sidebar header
@@ -196,6 +196,7 @@ html[data-sidebar-position=right] .sidebar-toggle {
 }
 
 .sidebar-dropdown {
+
   .badge-sidebar-primary,
   .badge-sidebar-secondary {
     top: 10px;
@@ -215,23 +216,25 @@ html[data-sidebar-position=right] .sidebar-toggle {
 // Collapse behavior if sidebar is on left side
 //body:not([data-sidebar-position=right]) {
 #sidebar-left {
+
   //.sidebar {
+  &.collapsed {
+    margin-left: -$sidebar-width;
+  }
+
+  // Workaround for IE bug, more info:
+  // https://stackoverflow.com/a/25850649
+  @media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+
+    // Sidebar default state (on mobile)
+    margin-left: -$sidebar-width;
+
+    // Sidebar collapsed state (on mobile)
     &.collapsed {
-      margin-left: -$sidebar-width;
+      margin-left: 0;
     }
+  }
 
-    // Workaround for IE bug, more info:
-    // https://stackoverflow.com/a/25850649
-    @media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
-
-      // Sidebar default state (on mobile)
-      margin-left: -$sidebar-width;
-
-      // Sidebar collapsed state (on mobile)
-      &.collapsed {
-        margin-left: 0;
-      }
-    }
   //}
 
   .sidebar-toggle {
@@ -242,23 +245,25 @@ html[data-sidebar-position=right] .sidebar-toggle {
 // Collapse behavior if sidebar is on right side
 //html[data-sidebar-position=right] {
 #sidebar-right {
+
   //.sidebar {
+  &.collapsed {
+    margin-right: -$sidebar-width;
+  }
+
+  // Workaround for IE bug, more info:
+  // https://stackoverflow.com/a/25850649
+  @media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+
+    // Sidebar default state (on mobile)
+    margin-right: -$sidebar-width;
+
+    // Sidebar collapsed state (on mobile)
     &.collapsed {
-      margin-right: -$sidebar-width;
+      margin-right: 0;
     }
+  }
 
-    // Workaround for IE bug, more info:
-    // https://stackoverflow.com/a/25850649
-    @media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
-
-      // Sidebar default state (on mobile)
-      margin-right: -$sidebar-width;
-
-      // Sidebar collapsed state (on mobile)
-      &.collapsed {
-        margin-right: 0;
-      }
-    }
   //}
 
   .sidebar-toggle {
@@ -277,7 +282,7 @@ html[data-sidebar-position=right] .sidebar-toggle {
   margin: $sidebar-cta-margin;
   border-radius: $sidebar-cta-border-radius;
   @include sidebar-theme("background", $sidebar-cta-bg);
-  
+
   &,
   strong {
     @include sidebar-theme("color", $sidebar-cta-color);
