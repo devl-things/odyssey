@@ -1,100 +1,39 @@
-import { useState, useEffect, useRef } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios';
-import * as go from 'gojs';
+import React, { useState } from 'react';
+import Header from './components/Layout/Header';
+import SidebarLeft from './components/Layout/SidebarLeft';
+import SidebarRight from './components/Layout/SidebarRight';
+import DacInput from './components/DacInput';
+import Properties from './components/Properties';
+import DiagramWindow from './components/DiagramWindow';
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [data, setData] = useState([]);
-  const diagramRef = useRef(null);
-  
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => setData(response.data))
-      .catch(error => console.log('Error fetching data:', error));
-  }, []);
+const App = () => {
+  const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
+  const [rightSidebarVisible, setRightSidebarVisible] = useState(true);
 
-  useEffect(() => {
-    // Create the GoJS Diagram
-    const $ = go.GraphObject.make;
-    const diagram = $(go.Diagram, diagramRef.current, {
-      'undoManager.isEnabled': true,  // Enable undo/redo
-    });
+  const toggleLeftSideVisibility = () => {
+    setLeftSidebarVisible(prevState => !prevState);
+  };
 
-    // Define the node template
-    diagram.nodeTemplate =
-      $(go.Node, 'Auto',
-        $(go.Shape, 'Rectangle', {
-          strokeWidth: 2,
-          fill: 'lightblue',
-        }),
-        $(go.TextBlock, {
-          margin: 10,
-          font: 'bold 12pt sans-serif',
-        },
-        new go.Binding('text', 'key'))
-      );
+  const toggleRightSideVisibility = () => {
+    setRightSidebarVisible(prevState => !prevState);
+  };
 
-    // Define the link template
-    diagram.linkTemplate =
-      $(go.Link,
-        $(go.Shape),  // Line shape
-        $(go.Shape, { toArrow: 'Standard' })  // Arrow at the end of the link
-      );
-
-    // Create the model (data for the nodes and links)
-    diagram.model = new go.GraphLinksModel(
-      [
-        { key: 'Alpha' },
-        { key: 'Beta' },
-        { key: 'Gamma' },
-      ],
-      [
-        { from: 'Alpha', to: 'Beta' },
-        { from: 'Beta', to: 'Gamma' },
-      ]
-    );
-
-    return () => {
-      diagram.div = null; // Clean up the diagram when the component is unmounted
-    };
-  }, []);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Header onToggleLeft={toggleLeftSideVisibility} onToggleRight={toggleRightSideVisibility} />
+      <div className="main-content">
+        <SidebarLeft isVisible={leftSidebarVisible} >
+          <DacInput />
+        </SidebarLeft>
+        <main className="central-content">
+          <DiagramWindow />
+        </main>
+        <SidebarRight isVisible={rightSidebarVisible}>
+          <Properties property="Nothing to see here, yet!" />
+        </SidebarRight>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          Count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR. Is it? Maybe it is. Look
-        </p>
-        <h1>Fetched Data:</h1>
-      <ul>
-        {data.map(item => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
-      </div>
-      <div
-      ref={diagramRef}
-      style={{ width: '100%', height: '500px', border: '1px solid black' }}
-    />
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
