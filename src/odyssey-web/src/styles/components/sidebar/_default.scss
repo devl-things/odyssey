@@ -214,7 +214,11 @@ a.sidebar-link {
 // Collapse behavior if sidebar is on left side
 #sidebar-left {
 
-  //.sidebar {
+  //TODO remove at some point
+  border-color: black;
+  border-width: 1;
+  border-style: solid;
+
   &.collapsed {
     margin-left: -$sidebar-width;
   }
@@ -232,8 +236,6 @@ a.sidebar-link {
     }
   }
 
-  //}
-
   .sidebar-toggle {
     margin-right: $spacer;
   }
@@ -242,7 +244,11 @@ a.sidebar-link {
 // Collapse behavior if sidebar is on right side
 #sidebar-right {
 
-  //.sidebar {
+  //TODO remove at some point
+  border-color: black;
+  border-width: 1;
+  border-style: solid;
+
   &.collapsed {
     margin-right: -$sidebar-width;
   }
@@ -259,8 +265,6 @@ a.sidebar-link {
       margin-right: 0;
     }
   }
-
-  //}
 
   .sidebar-toggle {
     margin-left: $spacer;
