@@ -1,5 +1,4 @@
-// src/components/Layout/SidebarRight.js
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const SidebarRight = ({ isVisible, children }) => {
 
@@ -11,5 +10,11 @@ const SidebarRight = ({ isVisible, children }) => {
         </nav>
     );
 };
+
+SidebarRight.propTypes =
+{
+    isVisible: PropTypes.bool.isRequired,
+    children: PropTypes.node
+}
 
 export default SidebarRight;

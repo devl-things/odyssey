@@ -12,7 +12,7 @@
 }
 
 html[data-sidebar-behavior=sticky] {
-  .sidebar-content[data-simplebar] {
+  .sidebar-content {
     height: 100vh;
     position: sticky;
     top: 0;
@@ -47,6 +47,12 @@ a.sidebar-link {
 
 // Sidebar nested links
 .sidebar-dropdown {
+
+  .badge-sidebar-primary,
+  .badge-sidebar-secondary {
+    top: 10px;
+  }
+
   .sidebar-dropdown {
     .sidebar-link {
       padding: $sidebar-link-child-second-padding;
@@ -195,14 +201,6 @@ a.sidebar-link {
   top: 12px;
 }
 
-.sidebar-dropdown {
-
-  .badge-sidebar-primary,
-  .badge-sidebar-secondary {
-    top: 10px;
-  }
-}
-
 .badge-sidebar-primary {
   @include sidebar-theme("background", $sidebar-badge-primary-bg);
   @include sidebar-theme("color", $sidebar-badge-primary-color);
@@ -214,7 +212,6 @@ a.sidebar-link {
 }
 
 // Collapse behavior if sidebar is on left side
-//body:not([data-sidebar-position=right]) {
 #sidebar-left {
 
   //.sidebar {
@@ -243,7 +240,6 @@ a.sidebar-link {
 }
 
 // Collapse behavior if sidebar is on right side
-//html[data-sidebar-position=right] {
 #sidebar-right {
 
   //.sidebar {
@@ -268,11 +264,6 @@ a.sidebar-link {
 
   .sidebar-toggle {
     margin-left: $spacer;
-  }
-
-  .simplebar-track.simplebar-vertical {
-    left: 0;
-    right: auto;
   }
 }
 

@@ -1,5 +1,3 @@
-// src/components/Layout/SidebarLeft.js
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const SidebarLeft = ({ isVisible, children }) => {
@@ -12,9 +10,11 @@ const SidebarLeft = ({ isVisible, children }) => {
         </nav>
     );
 };
+
 SidebarLeft.propTypes =
 {
     isVisible: PropTypes.bool.isRequired,
+    children: PropTypes.node
 }
 
 export default SidebarLeft;

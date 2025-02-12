@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 const Header = ({ onToggleLeft, onToggleRight }) => {
     return (
         <nav className="navbar navbar-expand navbar-bg">
-            <a className="sidebar-toggle left" onClick={onToggleLeft}>
+            <button className="sidebar-toggle left" onClick={onToggleLeft}>
                 <i className="hamburger align-self-center"></i>
-            </a>
+            </button>
 
-            <a className="sidebar-toggle right" onClick={onToggleRight}>
+            <button className="sidebar-toggle right" onClick={onToggleRight}>
                 <i className="hamburger hamburger-right align-self-center"></i>
-            </a>
+            </button>
         </nav>
     );
 };
