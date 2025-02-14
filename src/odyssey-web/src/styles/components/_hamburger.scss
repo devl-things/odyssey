@@ -1,14 +1,16 @@
+@use '../variables' as variables;
+
 .hamburger,
 .hamburger:before,
 .hamburger:after {
   cursor: pointer;
   border-radius: 1px;
   height: 3px;
-  width: $hamburger-width-middle;
-  background: $hamburger-bg;
+  width: variables.$hamburger-width-middle;
+  background: variables.$hamburger-bg;
   display: block;
   content: '';
-  transition: $transition-appearance-fast;
+  transition: variables.$transition-appearance-fast;
 }
 
 .hamburger {
@@ -17,25 +19,27 @@
 
 .hamburger:before {
   top: -8px;
-  width: $hamburger-width-top;
+  width: variables.$hamburger-width-top;
   position: absolute;
 }
 
 .hamburger:after {
   bottom: -8px;
-  width: $hamburger-width-bottom;
+  width: variables.$hamburger-width-bottom;
   position: absolute;
 }
 
 .sidebar-toggle:hover {
+
   .hamburger,
   .hamburger:before,
   .hamburger:after {
-    background: $primary;
+    background: variables.$primary;
   }
 }
 
 .hamburger-right {
+
   &,
   &:before,
   &:after {

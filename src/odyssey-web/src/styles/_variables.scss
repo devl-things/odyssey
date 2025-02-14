@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Options
 $prefix: bs- !default;
 
@@ -23,22 +25,21 @@ $spacers: (
   4: ($spacer * 1.5),
   5: ($spacer * 3),
   6: ($spacer * 4.5),
-  7: ($spacer * 6)
-) !default;
+  7: ($spacer * 6)) !default;
 
 // Theme colors
-$blue: 			#3F80EA !default;
-$indigo:	 	#6610f2 !default;
-$purple: 		#6f42c1 !default;
-$pink:		 	#e83e8c !default;
-$red: 			#d9534f !default;
-$orange: 		#fd7e14 !default;
-$yellow: 		#E5A54B !default;
-$green: 		#4BBF73 !default;
-$teal: 			#20c997 !default;
-$cyan: 			#1F9BCF !default;
+$blue: #3F80EA !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #d9534f !default;
+$orange: #fd7e14 !default;
+$yellow: #E5A54B !default;
+$green: #4BBF73 !default;
+$teal: #20c997 !default;
+$cyan: #1F9BCF !default;
 
-$white:    #fff !default;
+$white: #fff !default;
 $gray-100: #f4f7f9 !default;
 $gray-200: #e2e8ee !default;
 $gray-300: #dee6ed !default;
@@ -50,19 +51,19 @@ $gray-800: #020202 !default;
 $gray-900: #212529 !default;
 $black: #000 !default;
 
-$primary:        $blue !default;
-$primary-subtle: lighten($primary, 15%) !default;
-$secondary:      $gray-700 !default;
-$success:        $green !default;
-$info:           $cyan !default;
-$warning:        $yellow !default;
-$danger:         $red !default;
-$light:          lighten($gray-200, 4%) !default;
-$dark:           #293042 !default;
+$primary: $blue !default;
+$primary-subtle: color.adjust($primary, $lightness: 15%) !default;
+$secondary: $gray-700 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: color.adjust($gray-200, $lightness: 4%) !default;
+$dark: #293042 !default;
 
 // Border radius
 $border-radius-sm: .1rem !default;
-$border-radius:    .2rem !default;
+$border-radius: .2rem !default;
 $border-radius-lg: .3rem !default;
 
 // Navbar
@@ -86,9 +87,12 @@ $navbar-brand-icon-color: $primary !default;
 $navbar-input-bg: $gray-100 !default;
 
 // Transitions
-$transition-appearance: background .4s ease-in-out, color .4s ease-in-out !default;
-$transition-appearance-slow: background .6s ease-in-out, color .6s ease-in-out !default;
-$transition-appearance-fast: background .1s ease-in-out, color .1s ease-in-out !default;
+$transition-appearance: background .4s ease-in-out,
+  color .4s ease-in-out !default;
+$transition-appearance-slow: background .6s ease-in-out,
+  color .6s ease-in-out !default;
+$transition-appearance-fast: background .1s ease-in-out,
+  color .1s ease-in-out !default;
 
 // Hamburger
 $hamburger-bg: var(--#{$prefix}body-color) !default;
@@ -98,33 +102,32 @@ $hamburger-width-bottom: 16px !default;
 
 // Sidebar general
 $sidebar-width: 300px !default;
-$sidebar-transition: margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out !default;
+$sidebar-transition: margin-left .35s ease-in-out,
+  left .35s ease-in-out,
+  margin-right .35s ease-in-out,
+  right .35s ease-in-out !default;
 $sidebar-bg: (
   "dark": #293042,
   "colored": #2A64C1,
-  "light": $white
-) !default;
-  
+  "light": $white) !default;
+
 // Sidebar brand
 $sidebar-brand-padding-y: 1.15rem !default;
 $sidebar-brand-padding-x: 1.5rem !default;
 $sidebar-brand-font-weight: $font-weight-bold !default;
 $sidebar-brand-font-size: 1.125rem !default;
 $sidebar-brand-icon-color: (
-  "dark": lighten($primary, 2.5%),
+  "dark": color.adjust($primary, $lightness: 2.5%),
   "colored": $white,
-  "light": darken($primary, 5%)
-) !default;
+  "light": darken($primary, 5%)) !default;
 $sidebar-brand-icon-top-color: (
-  "dark": lighten($primary, 12.5%),
+  "dark": color.adjust($primary, $lightness: 12.5%),
   "colored": rgba($white, 0.66),
-  "light": lighten($primary, 15%)
-) !default;
+  "light": color.adjust($primary, $lightness: 15%)) !default;
 $sidebar-brand-color: (
   "dark": $white,
   "colored": $white,
-  "light": lighten($gray-800, 25%)
-) !default;
+  "light": color.adjust($gray-800, $lightness: 25%)) !default;
 
 // Sidebar header
 $sidebar-header-padding: 1.5rem 1.5rem 0.375rem !default;
@@ -132,8 +135,7 @@ $sidebar-header-font-size: $font-size-sm !default;
 $sidebar-header-color: (
   "dark": $gray-400,
   "colored": $gray-400,
-  "light": $gray-700
-) !default;
+  "light": $gray-700) !default;
 
 // Sidebar link
 $sidebar-link-padding: .625rem 1.625rem !default;
@@ -141,22 +143,19 @@ $sidebar-link-font-weight: 400 !default;
 $sidebar-link-color: (
   "dark": rgba($gray-200, 0.5),
   "colored": rgba($gray-100, 0.7),
-  "light": $gray-700
-) !default;
+  "light": $gray-700) !default;
 
 $sidebar-link-hover-font-weight: $font-weight-normal !default;
 $sidebar-link-hover-color: (
   "dark": #{rgba($gray-200, 0.75)},
   "colored": #{rgba($gray-100, 0.9)},
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 
 $sidebar-link-active-font-weight: $font-weight-normal !default;
 $sidebar-link-active-color: (
   "dark": $gray-200,
   "colored": $gray-100,
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 
 // Sidebar child link
 $sidebar-link-child-padding: .55rem 1.5rem .55rem 3.7rem !default;
@@ -166,18 +165,15 @@ $sidebar-link-child-font-weight: 400 !default;
 $sidebar-link-child-color: (
   "dark": $gray-500,
   "colored": $gray-400,
-  "light": $gray-600
-) !default;
+  "light": $gray-600) !default;
 $sidebar-link-child-hover-color: (
   "dark": $gray-200,
   "colored": $gray-100,
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 $sidebar-link-child-active-color: (
-  "dark": #{lighten($primary, 5)},
+  "dark": #{color.adjust($primary, $lightness: 5%)},
   "colored": $white,
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 
 // Sidebar child link nested
 $sidebar-link-child-second-padding: .55rem 1.5rem .55rem 4.5rem !default;
@@ -187,47 +183,41 @@ $sidebar-link-child-third-padding: .55rem 1.5rem .55rem 5.75rem !default;
 $sidebar-link-icon-color: (
   "dark": #{rgba($gray-200, 0.5)},
   "colored": #{rgba($gray-100, 0.5)},
-  "light": $gray-700
-) !default;
+  "light": $gray-700) !default;
 $sidebar-link-icon-hover-color: (
   "dark": #{rgba($gray-200, 0.75)},
   "colored": #{rgba($gray-100, 0.75)},
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 $sidebar-link-icon-active-color: (
   "dark": $gray-200,
   "colored": $gray-100,
-  "light": #{lighten($primary, 5)}
-) !default;
+  "light": #{color.adjust($primary, $lightness: 5%)}) !default;
 
 // Sidebar badges
 $sidebar-badge-primary-color: (
   "dark": $white,
   "colored": $dark,
-  "light": $white
-) !default;
+  "light": $white) !default;
 $sidebar-badge-primary-bg: (
   "dark": $primary,
   "colored": $white,
-  "light": $primary
-) !default;
+  "light": $primary) !default;
 
 $sidebar-badge-secondary-color: (
   "dark": $white,
   "colored": $dark,
-  "light": $white
-) !default;
+  "light": $white) !default;
 $sidebar-badge-secondary-bg: (
   "dark": $gray-600,
   "colored": rgba($white, 0.75),
-  "light": $gray-600
-) !default;
+  "light": $gray-600) !default;
 
 // Sidebar compact
 $sidebar-compact-width: 68px;
 
 // Sidebar compact dropdown
-$sidebar-compact-dropdown-padding: ($spacer * 0.5) 0;
+$sidebar-compact-dropdown-padding: (
+  $spacer * 0.5) 0;
 $sidebar-compact-dropdown-width: 220px;
 $sidebar-compact-dropdown-box-shadow: 0 0.5rem 3rem 0.5rem rgba($black, .05) !default;
 $sidebar-compact-dropdown-border-radius: $border-radius-lg;
@@ -236,8 +226,8 @@ $sidebar-compact-dropdown-background: $white;
 // Sidebar compact link
 $sidebar-compact-dropdown-link-padding: 0.5rem 1.5rem;
 $sidebar-compact-dropdown-link-color: $gray-600 !default;
-$sidebar-compact-dropdown-link-hover-color: lighten($primary, 5) !default;
-$sidebar-compact-dropdown-link-active-color: lighten($primary, 5) !default;
+$sidebar-compact-dropdown-link-hover-color: color.adjust($primary, $lightness: 5%) !default;
+$sidebar-compact-dropdown-link-active-color: color.adjust($primary, $lightness: 5%) !default;
 
 // Sidebar compact link children
 $sidebar-compact-dropdown-child-link-padding: 0.5rem 1.5rem 0.5rem 2.5rem;
@@ -247,14 +237,12 @@ $sidebar-compact-dropdown-child-second-link-padding: 0.5rem 1.5rem 0.5rem 3.5rem
 $sidebar-cta-color: (
   "dark": $gray-200,
   "colored": $gray-200,
-  "light": $gray-800
-) !default;
+  "light": $gray-800) !default;
 
 $sidebar-cta-bg: (
-  "dark": #{lighten(#293042, 5%)},
-  "colored": #{lighten(#2A64C1, 3%)},
-  "light": #{darken($white, 3%)}
-) !default;
+  "dark": #{color.adjust(#293042, $lightness: 5%)},
+  "colored": #{color.adjust(#2A64C1, $lightness: 3%)},
+  "light": #{darken($white, 3%)}) !default;
 
 $sidebar-cta-padding: $spacer*1.5 !default;
 $sidebar-cta-margin: $spacer*1.75 !default;

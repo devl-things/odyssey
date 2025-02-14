@@ -1,26 +1,33 @@
-@import './variables';
-
 // Bootstrap
-@import "bootstrap/scss/bootstrap";
+@use "bootstrap/scss/bootstrap" as *;
 
-@import './components/hamburger';
-@import './components/navbar';
+@use './components/hamburger' as *;
+@use './components/navbar' as *;
 
-@import "./components/sidebar/sidebar-theme";
 // Sidebar general
-@import "./components/sidebar/default";
+@use "./components/sidebar/default" as *;
 
 button.sidebar-toggle {
   background: none;
   border: none;
 }
 
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .main-content {
   display: flex;
+  flex-grow: 1;
   overflow-x: hidden;
+  height: 100%;
 }
 
 .central-content {
+  border: 2px solid black;
   flex-grow: 1;
   overflow-y: auto;
   padding: 20px;

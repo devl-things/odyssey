@@ -28,20 +28,17 @@ const DiagramWindow = () => {
     );
 
     return (
-        // <div style={{ width: '100vw', height: '70vh' }}>
-        <div style={{ height: '70vh' }}>
-            <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-            >
-                {/* <Controls /> */}
-                {/* <MiniMap /> */}
-                {/* <Background variant="dots" gap={12} size={1} /> */}
-            </ReactFlow>
-        </div >
+        <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+        >
+            {/* <Controls /> */}
+            {/* <MiniMap /> */}
+            {/* <Background variant="dots" gap={12} size={1} /> */}
+        </ReactFlow>
     );
 };
 
