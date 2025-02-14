@@ -19,7 +19,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       <Header onToggleLeft={toggleLeftSideVisibility} onToggleRight={toggleRightSideVisibility} />
       <div className="main-content">
         <SidebarLeft isVisible={leftSidebarVisible} >
@@ -32,7 +32,7 @@ const App = () => {
           <Properties property="Nothing to see here, yet!" />
         </SidebarRight>
       </div>
-    </div>
+    </>
   );
 };
 

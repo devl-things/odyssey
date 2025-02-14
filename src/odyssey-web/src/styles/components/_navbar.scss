@@ -1,12 +1,13 @@
+@use '../variables' as variables;
+@use "bootstrap/scss/bootstrap" as bootstrap;
+
 // Navbar
-$navbar-bg-dark: $body-bg-dark !default;
-$navbar-input-bg-dark: $dark !default;
 
 .navbar {
-  border-bottom: $navbar-border-bottom;
-  box-shadow: $navbar-box-shadow;
+  border-bottom: variables.$navbar-border-bottom;
+  box-shadow: variables.$navbar-box-shadow;
 
-  @include media-breakpoint-down(md) {
+  @include bootstrap.media-breakpoint-down(md) {
     width: 100vw;
   }
 }
@@ -16,14 +17,14 @@ $navbar-input-bg-dark: $dark !default;
 
   .form-control,
   .btn {
-    height: $input-height-lg;
-    background: $navbar-input-bg;
+    height: bootstrap.$input-height-lg;
+    background: variables.$navbar-input-bg;
     box-shadow: none;
     border: 0;
-    padding: $input-padding-y-lg $spacer*0.75;
+    padding: bootstrap.$input-padding-y-lg variables.$spacer*0.75;
 
     &:focus {
-      background: $navbar-input-bg;
+      background: variables.$navbar-input-bg;
       box-shadow: none;
       outline: 0;
     }
@@ -40,20 +41,6 @@ $navbar-input-bg-dark: $dark !default;
   }
 }
 
-@include color-mode(dark) {
-  .input-group-navbar {
-
-    .form-control,
-    .btn {
-      background: $navbar-input-bg-dark;
-
-      &:focus {
-        background: $navbar-input-bg-dark;
-      }
-    }
-  }
-}
-
 .navbar-expand>.container,
 .navbar-expand>.container-fluid,
 .navbar-expand>.container-lg,
@@ -65,25 +52,19 @@ $navbar-input-bg-dark: $dark !default;
 }
 
 .navbar-bg {
-  background: $navbar-bg;
-}
-
-@include color-mode(dark) {
-  .navbar-bg {
-    background: $navbar-bg-dark;
-  }
+  background: variables.$navbar-bg;
 }
 
 .navbar-brand {
-  font-weight: $navbar-brand-font-weight;
-  font-size: $navbar-brand-font-size;
-  padding: $navbar-brand-padding-y $navbar-brand-padding-x;
-  color: $navbar-brand-color;
+  font-weight: variables.$navbar-brand-font-weight;
+  font-size: variables.$navbar-brand-font-size;
+  padding: variables.$navbar-brand-padding-y variables.$navbar-brand-padding-x;
+  color: variables.$navbar-brand-color;
   display: block;
 
   svg,
   .lucide {
-    color: $navbar-brand-icon-color;
+    color: variables.$navbar-brand-icon-color;
     height: 24px;
     width: 24px;
     margin-left: -0.15rem;
@@ -97,7 +78,7 @@ $navbar-input-bg-dark: $dark !default;
   padding: .1rem .8rem;
   display: block;
   font-size: 1.5rem;
-  transition: $transition-appearance-fast;
+  transition: variables.$transition-appearance-fast;
   line-height: 1.4;
 
   &:after {
@@ -106,7 +87,7 @@ $navbar-input-bg-dark: $dark !default;
 
   &:hover,
   &.active {
-    color: $primary;
+    color: variables.$primary;
   }
 
   svg,
@@ -118,8 +99,8 @@ $navbar-input-bg-dark: $dark !default;
 
 .nav-item {
   .indicator {
-    background: $primary;
-    box-shadow: $box-shadow;
+    background: variables.$primary;
+    box-shadow: bootstrap.$box-shadow;
     border-radius: 50%;
     display: block;
     height: 18px;
@@ -131,7 +112,7 @@ $navbar-input-bg-dark: $dark !default;
     text-align: center;
     transition: top .1s ease-out;
     font-size: 0.675rem;
-    color: $white;
+    color: variables.$white;
   }
 
   &:hover .indicator {
@@ -150,7 +131,7 @@ $navbar-input-bg-dark: $dark !default;
   }
 }
 
-@include media-breakpoint-down(sm) {
+@include bootstrap.media-breakpoint-down(sm) {
   .navbar {
     padding: 0.75rem;
   }
@@ -202,17 +183,5 @@ $navbar-input-bg-dark: $dark !default;
 
   .nav-theme-toggle-dark {
     display: inline-block;
-  }
-}
-
-@include color-mode(dark) {
-  .nav-theme-toggle {
-    .nav-theme-toggle-light {
-      display: inline-block;
-    }
-
-    .nav-theme-toggle-dark {
-      display: none;
-    }
   }
 }
