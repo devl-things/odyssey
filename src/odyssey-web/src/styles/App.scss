@@ -6,6 +6,41 @@
 
 // Sidebar general
 @use "./components/sidebar/default" as *;
+@use './variables' as variables;
+
+
+.header {
+  display: flex;
+  padding-left: variables.$header-padding-x;
+  padding-right: variables.$header-padding-x;
+  padding-top: variables.$header-padding-y;
+  padding-bottom: variables.$header-padding-y;
+
+}
+
+.search-bar {
+  margin-left: 20px;
+  display: flex;
+
+  input,
+  button {
+    background-color: #F4F7F9;
+    border: 0;
+  }
+
+  input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
 
 button.sidebar-toggle {
   background: none;

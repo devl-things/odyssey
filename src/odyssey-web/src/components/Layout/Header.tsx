@@ -1,9 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import SearchBar from '../SearchBar';
 
-const Header = ({ onToggleLeft, onToggleRight }) => {
+interface HeaderProps {
+    onToggleLeft: () => void;  // Expecting a function for the left sidebar toggle
+    onToggleRight: () => void; // Expecting a function for the right sidebar toggle
+}
+
+const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
     return (
-        <nav className="navbar navbar-expand navbar-bg">
+        <nav className="header">
             <button className="sidebar-toggle left" onClick={onToggleLeft}>
                 <i className="hamburger align-self-center"></i>
             </button>
@@ -11,13 +16,10 @@ const Header = ({ onToggleLeft, onToggleRight }) => {
             <button className="sidebar-toggle right" onClick={onToggleRight}>
                 <i className="hamburger hamburger-right align-self-center"></i>
             </button>
+
+            <SearchBar />
         </nav>
     );
-};
-
-Header.propTypes = {
-    onToggleLeft: PropTypes.func.isRequired,  // Expecting a function for the left sidebar toggle
-    onToggleRight: PropTypes.func.isRequired, // Expecting a function for the right sidebar toggle
 };
 
 export default Header;
