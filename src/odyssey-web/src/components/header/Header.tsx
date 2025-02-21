@@ -1,5 +1,8 @@
 import React from 'react';
 import SearchBar from '../search-bar/SearchBar';
+import SidebarToggleButton from '../sidebar-toggle-button/SidebarToggleButton';
+import './Header.scss'
+import LanguageSelector from '../language-selector/LanguageSelector';
 
 interface HeaderProps {
     onToggleLeft: () => void;  // Expecting a function for the left sidebar toggle
@@ -13,15 +16,17 @@ const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
     }
     return (
         <nav className="header">
-            <button className="sidebar-toggle left" onClick={onToggleLeft}>
-                <i className="hamburger align-self-center"></i>
-            </button>
-
-            <button className="sidebar-toggle right" onClick={onToggleRight}>
-                <i className="hamburger hamburger-right align-self-center"></i>
-            </button>
+            {/* //<div className="header-left"> */}
+            <SidebarToggleButton position="left" onClick={onToggleLeft} />
+            <SidebarToggleButton position="right" onClick={onToggleRight} />
 
             <SearchBar onSearch={handleOnSearch} />
+            {/* </div> */}
+
+            <div className="header-title">
+                Odyssey
+            </div>
+            <LanguageSelector />
         </nav>
     );
 };

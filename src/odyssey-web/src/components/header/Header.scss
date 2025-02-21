@@ -1,0 +1,26 @@
+@use '../../styles/variables' as variables;
+
+$header-padding-y: variables.$spacer*0.6 !default;
+$header-padding-x: variables.$spacer*1.0 !default;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+    padding-left: $header-padding-x;
+    padding-right: $header-padding-x;
+    padding-top: $header-padding-y;
+    padding-bottom: $header-padding-y;
+}
+
+.header-title {
+    position: absolute; // Take it out of the flow and position it absolutely within the header
+    top: 50%; // Position it vertically in the middle of the header
+    left: 50%; // Position it horizontally in the middle of the header
+    transform: translate(-50%, -50%); // Adjust to exactly center it based on its own dimensions
+
+    text-align: center; // Ensure the text is centered
+    font-size: 1.5rem; // Optional: Adjust the font size to fit your design
+}

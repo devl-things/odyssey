@@ -173,21 +173,22 @@ a.sidebar-link {
   }
 }
 
+//TODO remove
 // Toggle states
-.sidebar-toggle {
-  cursor: pointer;
-  width: 26px;
-  height: 26px;
-  display: flex;
+// .sidebar-toggle {
+//   cursor: pointer;
+//   width: 26px;
+//   height: 26px;
+//   display: flex;
 
-  &.right {
-    margin-left: variables.$spacer;
-  }
+//   &.right {
+//     margin-left: variables.$spacer;
+//   }
 
-  &.left {
-    margin-right: variables.$spacer;
-  }
-}
+//   &.left {
+//     margin-right: variables.$spacer;
+//   }
+// }
 
 // Sidebar header
 .sidebar-header {
@@ -227,6 +228,7 @@ a.sidebar-link {
     margin-left: -(variables.$sidebar-width);
   }
 
+
   // Workaround for IE bug, more info:
   // https://stackoverflow.com/a/25850649
   @media (min-width: 1px) and (max-width: #{map-get(bootstrap.$grid-breakpoints, 'lg') - .02px}) {
@@ -240,9 +242,10 @@ a.sidebar-link {
     }
   }
 
-  .sidebar-toggle {
-    margin-right: variables.$spacer;
-  }
+  //TODO REMOVE
+  //   .sidebar-toggle {
+  //     margin-right: variables.$spacer;
+  //   }
 }
 
 // Collapse behavior if sidebar is on right side
@@ -270,9 +273,11 @@ a.sidebar-link {
     }
   }
 
-  .sidebar-toggle {
-    margin-left: variables.$spacer;
-  }
+  //TODO REMOVE
+
+  //   .sidebar-toggle {
+  //     margin-left: variables.$spacer;
+  //   }
 }
 
 // Sidebar bottom

@@ -1,48 +1,48 @@
-@use '../variables' as variables;
+// @use '../variables' as variables;
 
-.hamburger,
-.hamburger:before,
-.hamburger:after {
-  cursor: pointer;
-  border-radius: 1px;
-  height: 3px;
-  width: variables.$hamburger-width-middle;
-  background: variables.$hamburger-bg;
-  display: block;
-  content: '';
-  transition: variables.$transition-appearance-fast;
-}
+// .hamburger,
+// .hamburger:before,
+// .hamburger:after {
+//   cursor: pointer;
+//   border-radius: 1px;
+//   height: 3px;
+//   width: variables.$hamburger-width-middle;
+//   background: variables.$hamburger-bg;
+//   display: block;
+//   content: '';
+//   transition: variables.$transition-appearance-fast;
+// }
 
-.hamburger {
-  position: relative;
-}
+// .hamburger {
+//   position: relative;
+// }
 
-.hamburger:before {
-  top: -8px;
-  width: variables.$hamburger-width-top;
-  position: absolute;
-}
+// .hamburger:before {
+//   top: -8px;
+//   width: variables.$hamburger-width-top;
+//   position: absolute;
+// }
 
-.hamburger:after {
-  bottom: -8px;
-  width: variables.$hamburger-width-bottom;
-  position: absolute;
-}
+// .hamburger:after {
+//   bottom: -8px;
+//   width: variables.$hamburger-width-bottom;
+//   position: absolute;
+// }
 
-.sidebar-toggle:hover {
+// .sidebar-toggle:hover {
 
-  .hamburger,
-  .hamburger:before,
-  .hamburger:after {
-    background: variables.$primary;
-  }
-}
+//   .hamburger,
+//   .hamburger:before,
+//   .hamburger:after {
+//     background: variables.$primary;
+//   }
+// }
 
-.hamburger-right {
+// .hamburger-right {
 
-  &,
-  &:before,
-  &:after {
-    right: 0;
-  }
-}
+//   &,
+//   &:before,
+//   &:after {
+//     right: 0;
+//   }
+// }
