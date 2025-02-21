@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LocalizationProvider from './contexts/LocalizationProvider';
 import Header from './components/Layout/Header';
 import SidebarLeft from './components/Layout/SidebarLeft';
 import SidebarRight from './components/Layout/SidebarRight';
@@ -19,7 +20,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <LocalizationProvider>
       <Header onToggleLeft={toggleLeftSideVisibility} onToggleRight={toggleRightSideVisibility} />
       <div className="main-content">
         <SidebarLeft isVisible={leftSidebarVisible} >
@@ -32,7 +33,7 @@ const App = () => {
           <Properties property="Nothing to see here, yet!" />
         </SidebarRight>
       </div>
-    </>
+    </LocalizationProvider>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../SearchBar';
+import SearchBar from '../search-bar/SearchBar';
 
 interface HeaderProps {
     onToggleLeft: () => void;  // Expecting a function for the left sidebar toggle
@@ -7,6 +7,10 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
+
+    const handleOnSearch = (query: string) => {
+        console.log(query);
+    }
     return (
         <nav className="header">
             <button className="sidebar-toggle left" onClick={onToggleLeft}>
@@ -17,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
                 <i className="hamburger hamburger-right align-self-center"></i>
             </button>
 
-            <SearchBar />
+            <SearchBar onSearch={handleOnSearch} />
         </nav>
     );
 };
