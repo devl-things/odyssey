@@ -1,25 +1,6 @@
-// Bootstrap
-@use "bootstrap/scss/bootstrap" as *;
-
-@use './components/hamburger' as *;
-@use './components/navbar' as *;
-
-// Sidebar general
-@use "./components/sidebar/default" as *;
 @use './variables' as variables;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-//REMOVE
-// .header {
-//   display: flex;
-//   align-items: center;
-//   padding-left: variables.$header-padding-x;
-//   padding-right: variables.$header-padding-x;
-//   padding-top: variables.$header-padding-y;
-//   padding-bottom: variables.$header-padding-y;
-// }
-
 
 #root {
   display: flex;

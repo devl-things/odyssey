@@ -1,13 +1,19 @@
 @use '../../styles/variables' as variables;
 
+
+$hamburger-bg: variables.$gray-600 !default;
+$hamburger-width-top: 20px !default;
+$hamburger-width-middle: 24px !default;
+$hamburger-width-bottom: 16px !default;
+
 .hamburger,
 .hamburger:before,
 .hamburger:after {
     cursor: pointer;
     border-radius: 1px;
     height: 3px;
-    width: variables.$hamburger-width-middle;
-    background: variables.$hamburger-bg;
+    width: $hamburger-width-middle;
+    background: $hamburger-bg;
     display: block;
     content: '';
     transition: variables.$transition-appearance-fast;
@@ -19,13 +25,13 @@
 
 .hamburger:before {
     top: -8px;
-    width: variables.$hamburger-width-top;
+    width: $hamburger-width-top;
     position: absolute;
 }
 
 .hamburger:after {
     bottom: -8px;
-    width: variables.$hamburger-width-bottom;
+    width: $hamburger-width-bottom;
     position: absolute;
 }
 

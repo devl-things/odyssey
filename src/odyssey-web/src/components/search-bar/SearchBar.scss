@@ -1,6 +1,8 @@
-$search-bar-color: #6C757D;
-$search-bar-background-color: #F4F7F9;
-$search-bar-corners-radius: 2.5px;
+@use '../../styles/variables' as variables;
+
+$search-bar-color: variables.$gray-600;
+$search-bar-background-color: variables.$gray-100;
+$search-bar-corners-radius: variables.$border-radius;
 $search-bar-margin-x: 20px;
 
 .search-bar {

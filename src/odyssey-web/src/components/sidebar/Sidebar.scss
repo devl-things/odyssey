@@ -1,0 +1,114 @@
+@use '../../styles/variables' as variables;
+@use "./sidebar-theme" as sidebar_mixin;
+@use "bootstrap/scss/bootstrap" as bootstrap;
+
+// Sidebar general
+$sidebar-width: 300px !default;
+$sidebar-transition: margin-left .35s ease-in-out,
+    left .35s ease-in-out,
+    margin-right .35s ease-in-out,
+    right .35s ease-in-out !default;
+$sidebar-bg: (
+    "dark": #293042,
+    "colored": #2A64C1,
+    "light": variables.$white) !default;
+
+.sidebar {
+    min-width: $sidebar-width;
+    max-width: $sidebar-width;
+    transition: $sidebar-transition;
+    direction: ltr;
+    @include sidebar_mixin.sidebar-theme("background", $sidebar-bg
+);
+}
+
+.sidebar-content {
+    transition: $sidebar-transition;
+    @include sidebar_mixin.sidebar-theme("background", $sidebar-bg);
+}
+
+html[data-sidebar-behavior=sticky] {
+    .sidebar-content {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+}
+
+// Chevron
+.sidebar [data-bs-toggle="collapse"] {
+    position: relative;
+}
+
+.sidebar [data-bs-toggle="collapse"]:before {
+    content: " ";
+    border: solid;
+    border-width: 0 .1rem .1rem 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 1rem;
+    right: 1.7rem;
+    transition: all .2s ease-out;
+}
+
+.sidebar [aria-expanded="true"]:before,
+.sidebar [data-bs-toggle="collapse"]:not(.collapsed):before {
+    transform: rotate(-135deg);
+    top: 1.2rem;
+}
+
+// Collapse behavior if sidebar is on left side
+#sidebar-left {
+
+    //TODO remove at some point
+    border-color: black;
+    border-width: 1;
+    border-style: solid;
+
+    &.collapsed {
+        margin-left: -($sidebar-width);
+    }
+
+
+    // Workaround for IE bug, more info:
+    // https://stackoverflow.com/a/25850649
+    @media (min-width: 1px) and (max-width: #{map-get(bootstrap.$grid-breakpoints, 'lg') - .02px}) {
+
+        // Sidebar default state (on mobile)
+        margin-left: -($sidebar-width);
+
+        // Sidebar collapsed state (on mobile)
+        &.collapsed {
+            margin-left: 0;
+        }
+    }
+}
+
+// Collapse behavior if sidebar is on right side
+#sidebar-right {
+
+    //TODO remove at some point
+    border-color: black;
+    border-width: 1;
+    border-style: solid;
+
+    &.collapsed {
+        margin-right: -($sidebar-width);
+    }
+
+    // Workaround for IE bug, more info:
+    // https://stackoverflow.com/a/25850649
+    @media (min-width: 1px) and (max-width: #{map-get(bootstrap.$grid-breakpoints, 'lg') - .02px}) {
+
+        // Sidebar default state (on mobile)
+        margin-right: -($sidebar-width);
+
+        // Sidebar collapsed state (on mobile)
+        &.collapsed {
+            margin-right: 0;
+        }
+    }
+}
