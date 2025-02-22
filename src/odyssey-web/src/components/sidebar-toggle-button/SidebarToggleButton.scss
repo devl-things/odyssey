@@ -1,0 +1,74 @@
+@use '../../styles/variables' as variables;
+
+
+$hamburger-bg: variables.$gray-600 !default;
+$hamburger-width-top: 20px !default;
+$hamburger-width-middle: 24px !default;
+$hamburger-width-bottom: 16px !default;
+
+.hamburger,
+.hamburger:before,
+.hamburger:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 3px;
+    width: $hamburger-width-middle;
+    background: $hamburger-bg;
+    display: block;
+    content: '';
+    transition: variables.$transition-appearance-fast;
+}
+
+.hamburger {
+    position: relative;
+}
+
+.hamburger:before {
+    top: -8px;
+    width: $hamburger-width-top;
+    position: absolute;
+}
+
+.hamburger:after {
+    bottom: -8px;
+    width: $hamburger-width-bottom;
+    position: absolute;
+}
+
+.sidebar-toggle:hover {
+
+    .hamburger,
+    .hamburger:before,
+    .hamburger:after {
+        background: variables.$primary;
+    }
+}
+
+.hamburger-right {
+
+    &,
+    &:before,
+    &:after {
+        right: 0;
+    }
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    display: flex;
+
+    &.right {
+        margin-left: variables.$spacer;
+    }
+
+    &.left {
+        margin-right: variables.$spacer;
+    }
+}
+
+button.sidebar-toggle {
+    background: none;
+    border: none;
+}

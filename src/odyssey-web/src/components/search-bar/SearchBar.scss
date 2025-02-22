@@ -1,0 +1,44 @@
+@use '../../styles/variables' as variables;
+
+$search-bar-color: variables.$gray-600;
+$search-bar-background-color: variables.$gray-100;
+$search-bar-corners-radius: variables.$border-radius;
+$search-bar-margin-x: 20px;
+
+.search-bar {
+    --search-bar-color: #{$search-bar-color};
+
+    margin-left: $search-bar-margin-x;
+    margin-right: $search-bar-margin-x;
+    display: flex;
+
+    input,
+    button {
+        background-color: $search-bar-background-color;
+        border: none;
+        outline: none;
+        padding: 7px 10px;
+    }
+
+    input {
+        border-top-left-radius: $search-bar-corners-radius;
+        border-bottom-left-radius: $search-bar-corners-radius;
+        font-size: .825rem;
+        font-weight: 400;
+        color: $search-bar-color;
+    }
+
+    input::placeholder {
+        color: $search-bar-color;
+        opacity: 1;
+    }
+
+    button {
+        border-top-right-radius: $search-bar-corners-radius;
+        border-bottom-right-radius: $search-bar-corners-radius;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

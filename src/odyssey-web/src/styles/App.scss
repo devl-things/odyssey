@@ -1,22 +1,12 @@
-// Bootstrap
-@use "bootstrap/scss/bootstrap" as *;
+@use './variables' as variables;
 
-@use './components/hamburger' as *;
-@use './components/navbar' as *;
-
-// Sidebar general
-@use "./components/sidebar/default" as *;
-
-button.sidebar-toggle {
-  background: none;
-  border: none;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 #root {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  font-family: variables.$font-family-sans-serif
 }
 
 .main-content {
