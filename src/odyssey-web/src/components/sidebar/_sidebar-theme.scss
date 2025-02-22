@@ -1,9 +1,10 @@
 @mixin sidebar-theme($property, $values) {
   @each $theme, $value in $values {
-    
-    @if $theme == "dark" {
+
+    @if $theme =="light" {
       #{$property}: $value;
     }
+
     @else {
       html[data-sidebar-theme=#{$theme}] & {
         #{$property}: #{$value};

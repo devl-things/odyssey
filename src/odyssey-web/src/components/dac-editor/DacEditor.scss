@@ -1,0 +1,31 @@
+.content_editable_element {
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+    // flex: 1;
+    // /* Limit to viewport height */
+    // overflow-y: auto;
+}
+
+.token.property {
+    color: black;
+}
+
+.token.string {
+    color: purple;
+}
+
+.token.number {
+    color: green;
+}
+
+.token.boolean {
+    color: darkorange;
+}

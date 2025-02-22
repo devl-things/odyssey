@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LocalizationProvider from './contexts/LocalizationProvider';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import DacInput from './components/DacInput';
+import DacEditor from './components/dac-editor/DacEditor';
 import Properties from './components/Properties';
 import DiagramWindow from './components/DiagramWindow';
 
@@ -23,7 +23,7 @@ const App = () => {
       <Header onToggleLeft={toggleLeftSideVisibility} onToggleRight={toggleRightSideVisibility} />
       <div className="main-content">
         <Sidebar isVisible={leftSidebarVisible} position="left">
-          <DacInput />
+          <DacEditor />
         </Sidebar>
         <main className="central-content">
           <DiagramWindow />
