@@ -6,7 +6,7 @@ import DacEditor from './components/dac-editor/DacEditor';
 import Properties from './components/Properties';
 import DiagramWindow from './components/diagram-window/DiagramWindow';
 
-const App = () => {
+const App: React.FC = () => {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
   const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
   const [dacInEditor, setDacInEditor] = useState('');
@@ -20,12 +20,12 @@ const App = () => {
     setRightSidebarVisible(prevState => !prevState);
   };
 
-  const handleDiagramLoad = (diagram) => {
+  const handleDiagramLoad = (diagram: string) => {
     setDac(diagram);
     console.log("[App] Diagram from editor" + diagram)
   };
 
-  const handleEditDiagramInEditor = (diagram) => {
+  const handleEditDiagramInEditor = (diagram: string) => {
     setDacInEditor(diagram);
     console.log("[App] Diagram from react flow " + diagram)
   };
