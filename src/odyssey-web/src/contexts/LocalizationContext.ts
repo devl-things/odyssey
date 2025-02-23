@@ -1,6 +1,10 @@
 import { createContext } from 'react';
 import { DefaultTranslations, Translations } from './translations'; // Import the DefaultTranslations
 
+export const LocalizationLang = {
+    en: "en",
+    hr: "hr"
+}
 // Define the structure of the context's value
 export interface LocalizationContextProps {
     language: string;

@@ -1,22 +1,28 @@
 export interface Translation {
     searchBarPlaceholder: string;
+    toolbarFormatTooltip: string;
+    toolbarCloseTooltip: string;
     // Add other translation keys here as needed, e.g.,:
     // greeting: string;
 }
 
 export interface Translations {
     en: Translation;
-    fr: Translation;
+    hr: Translation;
     // You can add more languages here, e.g.,:
     // es: Translation;
 }
 
 export const DefaultTranslations: Translations = {
     en: {
-        searchBarPlaceholder: "Search..."
+        searchBarPlaceholder: "Search...",
+        toolbarFormatTooltip: "Format json",
+        toolbarCloseTooltip: "Close sidebar"
     },
-    fr: {
-        searchBarPlaceholder: "Rechercher..."
+    hr: {
+        searchBarPlaceholder: "Traži",
+        toolbarFormatTooltip: "Formatiraj",
+        toolbarCloseTooltip: "Zatvori"
     },
     // Add other languages as needed
 };
