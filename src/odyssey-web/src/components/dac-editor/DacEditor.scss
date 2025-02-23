@@ -1,3 +1,12 @@
+@use '../../styles/variables' as variables;
+
+.dac-editor {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
 .content_editable_element {
     white-space: pre-wrap;
     /* css-3 */
@@ -9,9 +18,32 @@
     /* Opera 7 */
     word-wrap: break-word;
     /* Internet Explorer 5.5+ */
-    // flex: 1;
-    // /* Limit to viewport height */
-    // overflow-y: auto;
+    outline: none;
+    min-height: 150px;
+    padding: 5px;
+    overflow-y: auto; // Enables scrollbar when needed
+    flex-grow: 1; // Allows it to take up available space
+
+    /* Custom Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+    // &::-webkit-scrollbar {
+    //     width: 8px; // Width of the scrollbar
+    // }
+
+    &::-webkit-scrollbar-track {
+        background: variables.$gray-100; // Background color of the track
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: variables.$gray-600; // Color of the scrollbar thumb
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: variables.$black; // Darker color when hovered
+    }
+
+    /* Custom Scrollbar for Firefox */
+    scrollbar-width: thin; // "thin", "auto", or "none"
+    scrollbar-color: variables.$gray-600 variables.$gray-100; // thumb color & track color
 }
 
 .token.property {

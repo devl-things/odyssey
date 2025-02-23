@@ -16,6 +16,7 @@ $sidebar-bg: (
 .sidebar {
     min-width: $sidebar-width;
     max-width: $sidebar-width;
+
     transition: $sidebar-transition;
     direction: ltr;
     @include sidebar_mixin.sidebar-theme("background", $sidebar-bg
@@ -23,6 +24,7 @@ $sidebar-bg: (
 }
 
 .sidebar-content {
+    height: 100%;
     transition: $sidebar-transition;
     @include sidebar_mixin.sidebar-theme("background", $sidebar-bg);
 }
@@ -62,11 +64,6 @@ html[data-sidebar-behavior=sticky] {
 
 // Collapse behavior if sidebar is on left side
 #sidebar-left {
-
-    //flex-direction: column;
-    max-height: 100%;
-    border: 2px solid black;
-
     &.collapsed {
         margin-left: -($sidebar-width);
     }

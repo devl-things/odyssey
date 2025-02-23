@@ -10,20 +10,20 @@ const App = () => {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
   const [rightSidebarVisible, setRightSidebarVisible] = useState(true);
 
-  const toggleLeftSideVisibility = () => {
+  const handleToggleLeft = () => {
     setLeftSidebarVisible(prevState => !prevState);
   };
 
-  const toggleRightSideVisibility = () => {
+  const handleToggleRight = () => {
     setRightSidebarVisible(prevState => !prevState);
   };
 
   return (
     <LocalizationProvider>
-      <Header onToggleLeft={toggleLeftSideVisibility} onToggleRight={toggleRightSideVisibility} />
+      <Header onToggleLeft={handleToggleLeft} onToggleRight={handleToggleRight} />
       <div className="main-content">
         <Sidebar isVisible={leftSidebarVisible} position="left">
-          <DacEditor />
+          <DacEditor onClose={handleToggleLeft} />
         </Sidebar>
         <main className="central-content">
           <DiagramWindow />

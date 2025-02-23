@@ -1,15 +1,28 @@
 @use '../../styles/variables' as variables;
 
+
+$toolbar-corners-radius: variables.$border-radius;
+
 .toolbar {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    background-color: inherit;
+    margin-bottom: 1px;
 
     button {
+        margin-left: 4px;
         background-color: inherit;
-        border: 1px solid variables.$gray-600;
+        border: none;
+        border-radius: $toolbar-corners-radius;
         outline: none;
+    }
+
+    button:hover {
+        color: variables.$white;
+        background-color: variables.$gray-600;
+    }
+
+    .toolbar-close:hover {
+        background-color: variables.$red;
     }
 }

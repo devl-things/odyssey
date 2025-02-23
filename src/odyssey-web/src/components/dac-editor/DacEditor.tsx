@@ -6,7 +6,11 @@ import "prismjs/components/prism-json"; // Import JSON language support
 import "./DacEditor.scss";
 import Toolbar from "../toolbar/Toolbar";
 
-const DacEditor: React.FC = () => {
+interface DacEditorProps {
+    onClose?: () => void;
+}
+
+const DacEditor: React.FC<DacEditorProps> = ({ onClose }) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     // Moves the caret to the end of the content
@@ -27,7 +31,7 @@ const DacEditor: React.FC = () => {
     // Pretty print JSON, highlight with Prism.js, and move cursor to end
     const prettyPrint = () => {
         if (!contentRef.current) return;
-
+        if (!contentRef.current.innerText) return;
         try {
             const obj = JSON.parse(contentRef.current.innerText);
             const formattedJSON = JSON.stringify(obj, null, 2);
@@ -55,9 +59,9 @@ const DacEditor: React.FC = () => {
             const text = event.clipboardData?.getData("text/plain"); // Get plain text
             if (document.getSelection && text && contentRef.current) {
                 const selection = window.getSelection();
-                if (!selection!.rangeCount) return;
+                if (!selection.rangeCount) return;
 
-                const range = selection!.getRangeAt(0);
+                const range = selection.getRangeAt(0);
                 range.deleteContents(); // Remove selected text
                 range.insertNode(document.createTextNode(text)); // Insert plain text
                 range.collapse(false); // Move cursor after the pasted text
@@ -79,17 +83,13 @@ const DacEditor: React.FC = () => {
     }, []);
 
     return (
-        <>
-            <button onClick={prettyPrint}>Pretty Print</button>
-            <Toolbar />
+        <div className="dac-editor">
+            <Toolbar onFormat={prettyPrint} onClose={onClose} />
             <div
                 ref={contentRef}
                 className="content_editable_element"
                 contentEditable={true}
                 style={{
-                    minHeight: "150px",
-                    border: "1px solid black",
-                    padding: "5px",
                     // whiteSpace: "pre-wrap", // Keeps JSON formatting
                     fontFamily: "monospace",
                     fontSize: 14,
@@ -97,7 +97,7 @@ const DacEditor: React.FC = () => {
                     // color: "#ccc", // Light text for readability
                 }}
             />
-        </>
+        </div>
     );
 };
 
