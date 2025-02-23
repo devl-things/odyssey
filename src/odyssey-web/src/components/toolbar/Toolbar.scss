@@ -22,7 +22,11 @@ $toolbar-corners-radius: variables.$border-radius;
         background-color: variables.$gray-600;
     }
 
-    .toolbar-close:hover {
-        background-color: variables.$red;
+    .toolbar-danger:hover {
+        background-color: variables.$danger;
+    }
+
+    .toolbar-success:hover {
+        background-color: variables.$success;
     }
 }

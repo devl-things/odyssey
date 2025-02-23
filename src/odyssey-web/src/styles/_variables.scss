@@ -1,5 +1,19 @@
 @use 'sass:color';
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 // Options
 $prefix: bs- !default;
 
@@ -10,6 +24,7 @@ $theme-dark: "dark";
 
 // Fonts
 $font-family-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 500 !default;

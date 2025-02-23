@@ -7,7 +7,7 @@
     height: 100%;
 }
 
-.content_editable_element {
+.dac-editor-element {
     white-space: pre-wrap;
     /* css-3 */
     white-space: -moz-pre-wrap;
@@ -23,6 +23,9 @@
     padding: 5px;
     overflow-y: auto; // Enables scrollbar when needed
     flex-grow: 1; // Allows it to take up available space
+
+    font-family: variables.$font-family-monospace;
+    font-size: variables.$font-size-lg;
 
     /* Custom Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
     // &::-webkit-scrollbar {

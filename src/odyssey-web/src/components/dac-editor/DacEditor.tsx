@@ -7,11 +7,19 @@ import "./DacEditor.scss";
 import Toolbar from "../toolbar/Toolbar";
 
 interface DacEditorProps {
+    dac?: string,
     onClose?: () => void;
+    onLoad?: (dac: string) => void;
 }
 
-const DacEditor: React.FC<DacEditorProps> = ({ onClose }) => {
+const DacEditor: React.FC<DacEditorProps> = ({ dac = "", onClose, onLoad }) => {
     const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            contentRef.current.innerText = dac; // Set the initial content
+        }
+    }, [dac]);
 
     // Moves the caret to the end of the content
     const moveCaretToEnd = () => {
@@ -26,6 +34,12 @@ const DacEditor: React.FC<DacEditorProps> = ({ onClose }) => {
 
         selection.removeAllRanges();
         selection.addRange(range);
+    };
+
+    const handleOnLoad = () => {
+        if (!contentRef.current) return;
+        if (!contentRef.current.innerText) return;
+        onLoad(contentRef.current.innerText);
     };
 
     // Pretty print JSON, highlight with Prism.js, and move cursor to end
@@ -84,18 +98,11 @@ const DacEditor: React.FC<DacEditorProps> = ({ onClose }) => {
 
     return (
         <div className="dac-editor">
-            <Toolbar onFormat={prettyPrint} onClose={onClose} />
+            <Toolbar onFormat={prettyPrint} onClose={onClose} onLoad={handleOnLoad} />
             <div
                 ref={contentRef}
-                className="content_editable_element"
+                className="dac-editor-element"
                 contentEditable={true}
-                style={{
-                    // whiteSpace: "pre-wrap", // Keeps JSON formatting
-                    fontFamily: "monospace",
-                    fontSize: 14,
-                    // background: "#2d2d2d", // Dark background for Prism theme
-                    // color: "#ccc", // Light text for readability
-                }}
             />
         </div>
     );

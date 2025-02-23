@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
     return (
         <div className="search-bar">
-            <input type="text" placeholder={translations.searchBarPlaceholder} aria-label="Search" value={searchQuery} onChange={handleInputChange} onKeyDown={handleKeyDown} />
+            <input type="text" name="search-bar" placeholder={translations.searchBarPlaceholder} aria-label="Search" value={searchQuery} onChange={handleInputChange} onKeyDown={handleKeyDown} />
             <button type="button" onClick={handleSearchClick}>
                 <LuSearch size="20" color="var(--search-bar-color)" />
             </button>
