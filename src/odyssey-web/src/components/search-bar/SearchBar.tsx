@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { LuSearch } from "react-icons/lu";
 import { useLocalization } from '../../contexts/useLocalization';
 import './SearchBar.scss';
 
@@ -29,7 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         <div className="search-bar">
             <input type="text" placeholder={translations.searchBarPlaceholder} aria-label="Search" value={searchQuery} onChange={handleInputChange} onKeyDown={handleKeyDown} />
             <button type="button" onClick={handleSearchClick}>
-                <Search size="20" color="var(--search-bar-color)" />
+                <LuSearch size="20" color="var(--search-bar-color)" />
             </button>
         </div>
     );

@@ -4,6 +4,7 @@ import "prismjs/components/prism-json"; // Import JSON language support
 // import "prismjs/themes/prism-tomorrow.css"; // Theme for syntax highlighting
 //import "prismjs/themes/prism-coy.css"; // Theme for syntax highlighting
 import "./DacEditor.scss";
+import Toolbar from "../toolbar/Toolbar";
 
 const DacEditor: React.FC = () => {
     const contentRef = useRef<HTMLDivElement>(null);
@@ -80,6 +81,7 @@ const DacEditor: React.FC = () => {
     return (
         <>
             <button onClick={prettyPrint}>Pretty Print</button>
+            <Toolbar />
             <div
                 ref={contentRef}
                 className="content_editable_element"
