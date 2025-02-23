@@ -1,10 +1,13 @@
+@use '../../styles/variables' as variables;
+
 .language-selector {
     position: absolute;
     right: 15px;
     cursor: pointer;
 
     button {
-        background: white;
+        background: variables.$white;
+        color: variables.$gray-600;
         border: none;
         outline: none;
     }

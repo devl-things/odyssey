@@ -1,0 +1,32 @@
+@use '../../styles/variables' as variables;
+
+
+$toolbar-corners-radius: variables.$border-radius;
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1px;
+
+    button {
+        margin-left: 4px;
+        background-color: inherit;
+        border: none;
+        border-radius: $toolbar-corners-radius;
+        outline: none;
+    }
+
+    button:hover {
+        color: variables.$white;
+        background-color: variables.$gray-600;
+    }
+
+    .toolbar-danger:hover {
+        background-color: variables.$danger;
+    }
+
+    .toolbar-success:hover {
+        background-color: variables.$success;
+    }
+}

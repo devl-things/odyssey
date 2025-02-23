@@ -9,13 +9,14 @@ $sidebar-transition: margin-left .35s ease-in-out,
     margin-right .35s ease-in-out,
     right .35s ease-in-out !default;
 $sidebar-bg: (
-    "dark": #293042,
-    "colored": #2A64C1,
-    "light": variables.$white) !default;
+    #{variables.$theme-light}: variables.$gray-100,
+    #{variables.$theme-color}: #2A64C1,
+    #{variables.$theme-dark}: variables.$dark) !default;
 
 .sidebar {
     min-width: $sidebar-width;
     max-width: $sidebar-width;
+
     transition: $sidebar-transition;
     direction: ltr;
     @include sidebar_mixin.sidebar-theme("background", $sidebar-bg
@@ -23,6 +24,7 @@ $sidebar-bg: (
 }
 
 .sidebar-content {
+    height: 100%;
     transition: $sidebar-transition;
     @include sidebar_mixin.sidebar-theme("background", $sidebar-bg);
 }
@@ -62,16 +64,9 @@ html[data-sidebar-behavior=sticky] {
 
 // Collapse behavior if sidebar is on left side
 #sidebar-left {
-
-    //TODO remove at some point
-    border-color: black;
-    border-width: 1;
-    border-style: solid;
-
     &.collapsed {
         margin-left: -($sidebar-width);
     }
-
 
     // Workaround for IE bug, more info:
     // https://stackoverflow.com/a/25850649

@@ -1,0 +1,17 @@
+.diagram-window {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+
+    .toolbar {
+        margin-right: 20px;
+    }
+}
+
+.diagram {
+    display: flex;
+    padding: 20px;
+    flex-grow: 1;
+    height: 100%;
+}
