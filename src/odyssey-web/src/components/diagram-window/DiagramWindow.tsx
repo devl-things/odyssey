@@ -7,7 +7,7 @@ import {
 import '@xyflow/react/dist/style.css';
 import DiagramModel from '../../data/odyssey-protocol/DiagramModel';
 import { mapToNodes, mapToDiagramNodes } from '../../data/mappers/nodeMapper';
-import { mapToEdges } from '../../data/mappers/edgeMapper';
+import { mapToEdges, mapToDiagramEdges } from '../../data/mappers/edgeMapper';
 import { logInDev } from '../../util/logging';
 import Toolbar from "../toolbar/Toolbar";
 import './DiagramWindow.scss';
@@ -58,7 +58,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
         // Ensure that DiagramModel is initialized properly
         let diagram: DiagramModel = {
             nodes: mapToDiagramNodes(nodes), // Ensure this function returns the correct type
-            edges: [] // Provide a default empty array if edges are not needed
+            edges: mapToDiagramEdges(edges) // Provide a default empty array if edges are not needed
         };
 
         onEditDiagramInEditor(diagram);

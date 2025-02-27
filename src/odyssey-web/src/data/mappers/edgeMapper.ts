@@ -21,21 +21,21 @@ export const mapToEdge = (diagramEdge: DiagramEdge): Edge => {
     };
 };
 
-export const mapToDiagramEdges = (diagramEdges: Edge[]): DiagramEdge[] => {
-    const reactFlowEdges: DiagramEdge[] = [];
-    if (diagramEdges) {
-        diagramEdges.forEach((diagramEdge: DiagramEdge) => {
-            reactFlowEdges.push(mapToDiagramEdge(diagramEdge));
+export const mapToDiagramEdges = (edges: Edge[]): DiagramEdge[] => {
+    const diagramEdges: DiagramEdge[] = [];
+    if (edges) {
+        edges.forEach((diagramEdge: DiagramEdge) => {
+            diagramEdges.push(mapToDiagramEdge(diagramEdge));
         });
     }
-    return reactFlowEdges;
+    return diagramEdges;
 };
 
-export const mapToDiagramEdge = (diagramEdge: Edge): DiagramEdge => {
+export const mapToDiagramEdge = (edge: Edge): DiagramEdge => {
     return {
-        id: diagramEdge.id,
-        source: diagramEdge.source,
-        target: diagramEdge.target,
+        id: edge.id,
+        source: edge.source,
+        target: edge.target,
         type: EdgeType.Relationship
     };
 };
