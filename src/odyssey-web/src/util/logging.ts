@@ -5,5 +5,5 @@ export const logInDev = (message: string): void => {
 };
 
 export const logError = (message: string): void => {
-    console.log(message);
+    console.error(message);
 };
