@@ -17,10 +17,6 @@ export const mapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
         diagramNodes.forEach((diagramNode: DiagramNode, index: number) => {
             let nodeType: ReactFlowNodeType = NODE_TYPE.DEFAULT;
             const reactFlowNode = mapToNode(diagramNode, nodeType);
-            if (diagramNode.id === "bee") {
-                //reactFlowNode.type = NODE_TYPE.GROUP;
-                //reactFlowNode.style = { width: 200, height: 200 };
-            }
             if (diagramNode.parent) {
                 reactFlowNode.extent = 'parent';
                 reactFlowNode.expandParent = true;
