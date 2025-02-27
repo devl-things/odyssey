@@ -5,12 +5,14 @@ import Sidebar from './components/sidebar/Sidebar';
 import DacEditor from './components/dac-editor/DacEditor';
 import Properties from './components/Properties';
 import DiagramWindow from './components/diagram-window/DiagramWindow';
+import DiagramModel from './data/odyssey-protocol/DiagramModel';
+import { logInDev } from './util/logging';
 
 const App: React.FC = () => {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
   const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
-  const [dacInEditor, setDacInEditor] = useState('');
-  const [dac, setDac] = useState('');
+  const [dacInEditor, setDacInEditor] = useState(null);
+  const [dac, setDac] = useState(null);
 
   const handleToggleLeft = () => {
     setLeftSidebarVisible(prevState => !prevState);
@@ -20,14 +22,14 @@ const App: React.FC = () => {
     setRightSidebarVisible(prevState => !prevState);
   };
 
-  const handleDiagramLoad = (diagram: string) => {
+  const handleDiagramLoad = (diagram: DiagramModel) => {
     setDac(diagram);
-    console.log("[App] Diagram from editor" + diagram)
+    logInDev("[App] Diagram from editor " + JSON.stringify(diagram));
   };
 
-  const handleEditDiagramInEditor = (diagram: string) => {
+  const handleEditDiagramInEditor = (diagram: DiagramModel) => {
     setDacInEditor(diagram);
-    console.log("[App] Diagram from react flow " + diagram)
+    logInDev("[App] Diagram from react flow " + JSON.stringify(diagram));
   };
 
   return (

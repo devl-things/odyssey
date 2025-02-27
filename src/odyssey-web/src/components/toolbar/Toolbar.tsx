@@ -1,21 +1,27 @@
 import React from "react";
 import { useLocalization } from '../../contexts/useLocalization';
 import './Toolbar.scss';
-import { CgClose } from "react-icons/cg";
+import { CgClose, CgPlayListRemove } from "react-icons/cg";
 import { LuCode, LuFileDown, LuFileImage, LuLoader } from "react-icons/lu";
 
 interface ToolbarProps {
     onClose?: () => void;
+    onClear?: () => void;
     onFormat?: () => void;
     onLoad?: () => void;
     onDownloadPdf?: () => void;
     onDownloadSvg?: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ onClose, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ onClose, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
     const { translations } = useLocalization();
 
     return (<div className="toolbar">
+        {onClear && (
+            <button onClick={onClear} title={translations.toolbarClearTooltip}>
+                <CgPlayListRemove />
+            </button>
+        )}
         {onFormat && (
             <button onClick={onFormat} title={translations.toolbarFormatTooltip}>
                 <LuCode />
