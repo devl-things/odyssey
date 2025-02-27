@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from '../search-bar/SearchBar';
 import SidebarToggleButton from '../sidebar-toggle-button/SidebarToggleButton';
+import { logInDev } from '../../util/logging';
 import './Header.scss'
 import LanguageSelector from '../language-selector/LanguageSelector';
 
@@ -11,7 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
     const handleOnSearch = (query: string) => {
-        console.log(query);
+        logInDev(query);
     }
     return (
         <nav className="header">

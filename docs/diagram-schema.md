@@ -60,7 +60,7 @@
             }
           },
           "method": { "type": ["string", "null"], "description": "Applicable for api-facet nodes", "enum": ["GET", "POST", "PUT", "DELETE"] },
-          "direction": { "type": "string", "enum": ["request", "response"], "description": "Defines if the API facet represents a request or a response" },
+          "direction": { "type": ["string", "null"], "enum": ["request", "response"], "description": "Defines if the API facet represents a request or a response" },
           "extensions": {
             "type": ["object", "null"],
             "description": "Custom attributes for model extension",
@@ -88,7 +88,7 @@
             "description": "Defines the type of relationship"
           },
           "processingType": {
-            "type": "string",
+            "type": ["string", "null"],
             "enum": ["batch", "real-time", "delta"],
             "description": "Defines whether the connection is batch, real-time, or delta processing"
           },
@@ -148,7 +148,7 @@
             }
           }
         },
-        "required": ["id", "source", "target", "type", "processingType"]
+        "required": ["id", "source", "target", "type"]
       }
     }
   },

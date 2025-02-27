@@ -1,7 +1,7 @@
 import DiagramNode from "./DiagramNode";
-import Edge from "./Edge";
+import DiagramEdge from "./DiagramEdge";
 
 export default interface DiagramModel {
     nodes: DiagramNode[];
-    edges: Edge[];
+    edges: DiagramEdge[];
 }

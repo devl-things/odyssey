@@ -1,6 +1,7 @@
 export interface Translation {
     searchBarPlaceholder: string;
     sidebarLeftToggleButtonTooltip: string;
+    toolbarClearTooltip: string,
     toolbarFormatTooltip: string;
     toolbarLoadTooltip: string;
     toolbarDownloadPdfTooltip: string;
@@ -21,6 +22,7 @@ export const DefaultTranslations: Translations = {
     en: {
         searchBarPlaceholder: "Search...",
         sidebarLeftToggleButtonTooltip: "Dac Editor",
+        toolbarClearTooltip: "Clear json",
         toolbarFormatTooltip: "Format json",
         toolbarLoadTooltip: "Load diagram",
         toolbarDownloadPdfTooltip: "Download in PDF",
@@ -30,6 +32,7 @@ export const DefaultTranslations: Translations = {
     hr: {
         searchBarPlaceholder: "Traži",
         sidebarLeftToggleButtonTooltip: "Dac Editor",
+        toolbarClearTooltip: "Počisti",
         toolbarFormatTooltip: "Formatiraj",
         toolbarLoadTooltip: "Učitaj diagram",
         toolbarDownloadPdfTooltip: "Skini PDF",

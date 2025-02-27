@@ -4,20 +4,28 @@ import "prismjs/components/prism-json"; // Import JSON language support
 // import "prismjs/themes/prism-tomorrow.css"; // Theme for syntax highlighting
 //import "prismjs/themes/prism-coy.css"; // Theme for syntax highlighting
 import "./DacEditor.scss";
+import DiagramModel from "../../data/odyssey-protocol/DiagramModel";
+import { isDiagramModel } from "../../data/odyssey-protocol/typeGuard";
 import Toolbar from "../toolbar/Toolbar";
 
 interface DacEditorProps {
-    dac?: string,
+    dac?: DiagramModel,
     onClose?: () => void;
-    onLoad?: (dac: string) => void;
+    onLoad?: (dac: DiagramModel) => void;
 }
 
-const DacEditor: React.FC<DacEditorProps> = ({ dac = "", onClose, onLoad }) => {
+const toIndentedString = (obj: object): string => {
+    if (obj)
+        return JSON.stringify(obj, null, 2);
+    else return "";
+};
+
+const DacEditor: React.FC<DacEditorProps> = ({ dac = null, onClose, onLoad }) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (contentRef.current) {
-            contentRef.current.innerText = dac; // Set the initial content
+            contentRef.current.innerText = toIndentedString(dac);
         }
     }, [dac]);
 
@@ -36,22 +44,37 @@ const DacEditor: React.FC<DacEditorProps> = ({ dac = "", onClose, onLoad }) => {
         selection.addRange(range);
     };
 
-    const handleOnLoad = () => {
+    const getDiagramModelFromEditor = (): DiagramModel | null => {
         if (!contentRef.current) return;
         if (!contentRef.current.innerText) return;
-        onLoad(contentRef.current.innerText);
+        let diagram: DiagramModel = JSON.parse(contentRef.current.innerText);
+        if (isDiagramModel(diagram)) {
+            return diagram;
+        }
+        else {
+            throw new Error("Not a valid type");
+        }
+    };
+
+    const handleOnLoad = () => {
+        try {
+            onLoad(getDiagramModelFromEditor());
+        }
+        catch (error) {
+            alert("Invalid model: " + error);
+        }
+    };
+
+    const handleOnClear = () => {
+        if (!contentRef.current) return;
+        contentRef.current.innerText = "";
     };
 
     // Pretty print JSON, highlight with Prism.js, and move cursor to end
-    const prettyPrint = () => {
-        if (!contentRef.current) return;
-        if (!contentRef.current.innerText) return;
+    const handleOnFormat = () => {
         try {
-            const obj = JSON.parse(contentRef.current.innerText);
-            const formattedJSON = JSON.stringify(obj, null, 2);
-            contentRef.current.innerText = formattedJSON;
-
-            // Apply Prism.js syntax highlighting
+            let diagram: DiagramModel = getDiagramModelFromEditor();
+            const formattedJSON = toIndentedString(diagram);
             contentRef.current.innerHTML = Prism.highlight(formattedJSON, Prism.languages.json, "json");
         } catch (error) {
             alert("Invalid JSON: " + error);
@@ -63,7 +86,7 @@ const DacEditor: React.FC<DacEditorProps> = ({ dac = "", onClose, onLoad }) => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.ctrlKey && event.key === "Enter") {
                 event.preventDefault();
-                prettyPrint();
+                handleOnFormat();
             }
         };
 
@@ -98,7 +121,7 @@ const DacEditor: React.FC<DacEditorProps> = ({ dac = "", onClose, onLoad }) => {
 
     return (
         <div className="dac-editor">
-            <Toolbar onFormat={prettyPrint} onClose={onClose} onLoad={handleOnLoad} />
+            <Toolbar onFormat={handleOnFormat} onClose={onClose} onLoad={handleOnLoad} onClear={handleOnClear} />
             <div
                 ref={contentRef}
                 className="dac-editor-element"
