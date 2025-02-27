@@ -24,12 +24,12 @@ const App: React.FC = () => {
 
   const handleDiagramLoad = (diagram: DiagramModel) => {
     setDac(diagram);
-    logInDev("[App] Diagram from editor " + JSON.stringify(diagram));
+    logInDev("[App] Diagram from editor ", diagram);
   };
 
   const handleEditDiagramInEditor = (diagram: DiagramModel) => {
     setDacInEditor(diagram);
-    logInDev("[App] Diagram from react flow " + JSON.stringify(diagram));
+    logInDev("[App] Diagram from react flow ", diagram);
   };
 
   return (
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <Sidebar isVisible={leftSidebarVisible} position="left">
           <DacEditor dac={dacInEditor} onClose={handleToggleLeft} onLoad={handleDiagramLoad} />
         </Sidebar>
-        <DiagramWindow dac={dac} onEditDiagramInEditor={handleEditDiagramInEditor} />
+        <DiagramWindow dac={dac} onEditDiagram={handleEditDiagramInEditor} />
         <Sidebar isVisible={rightSidebarVisible} position="right">
           <Properties property="Nothing to see here, yet!" />
         </Sidebar>

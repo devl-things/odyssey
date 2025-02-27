@@ -38,15 +38,15 @@ const initialEdgesII: Edge[] = [{ id: "1", source: 'bee', target: "dog" },
 
 interface DiagramWindowProps {
     dac?: DiagramModel,
-    onEditDiagramInEditor: (diagram: DiagramModel) => void;
+    onEditDiagram: (diagram: DiagramModel) => void;
 }
 
-const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagramInEditor }) => {
+const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesII);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesII);
 
     useEffect(() => {
-        logInDev("[DiagramWindow] Diagram from editor " + JSON.stringify(dac))
+        logInDev("[DiagramWindow] Diagram from editor ", dac);
         if (dac) {
             setNodes(mapToNodes(dac.nodes));
             setEdges(mapToEdges(dac.edges));
@@ -61,9 +61,10 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             edges: mapToDiagramEdges(edges) // Provide a default empty array if edges are not needed
         };
 
-        onEditDiagramInEditor(diagram);
+        onEditDiagram(diagram);
     };
 
+    const handleOnNodeClick = (event, node) => console.log('click node', node);
 
     const handleDownloadPdf = () => {
         logInDev("Export in PDF");
@@ -88,6 +89,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
+                    onNodeClick={handleOnNodeClick}
                 >
                     <MiniMap />
                     {/* <Controls /> */}

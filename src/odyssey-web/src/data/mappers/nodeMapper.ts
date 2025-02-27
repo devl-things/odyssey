@@ -28,7 +28,7 @@ export const mapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
             reactFlowNodes.push(reactFlowNode);
         });
     }
-    logInDev(JSON.stringify(reactFlowNodes));
+    logInDev(reactFlowNodes);
     return reactFlowNodes;
 };
 
