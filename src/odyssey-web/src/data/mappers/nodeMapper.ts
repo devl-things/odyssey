@@ -18,7 +18,8 @@ export const mapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
             let nodeType: ReactFlowNodeType = NODE_TYPE.DEFAULT;
             const reactFlowNode = mapToNode(diagramNode, nodeType);
             if (diagramNode.parent) {
-                //reactFlowNode.extent = 'parent';
+                // if this is not set than parent will stretch to cover/include all children
+                reactFlowNode.extent = 'parent';
                 reactFlowNode.expandParent = true;
             }
             //TODO #15: this will have to be replaced with auto-arrange algorithm
