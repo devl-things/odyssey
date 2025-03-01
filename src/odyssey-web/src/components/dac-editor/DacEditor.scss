@@ -50,17 +50,17 @@
 }
 
 .token.property {
-    color: black;
+    color: variables.$black;
 }
 
 .token.string {
-    color: purple;
+    color: variables.$purple;
 }
 
 .token.number {
-    color: green;
+    color: variables.$primary;
 }
 
 .token.boolean {
-    color: darkorange;
+    color: variables.$orange;
 }

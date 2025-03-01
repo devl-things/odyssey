@@ -2,10 +2,11 @@ import React from "react";
 import { useLocalization } from '../../contexts/useLocalization';
 import './Toolbar.scss';
 import { CgClose, CgPlayListRemove } from "react-icons/cg";
-import { LuCode, LuFileDown, LuFileImage, LuLoader } from "react-icons/lu";
+import { LuCode, LuFileDown, LuFileImage, LuLoader, LuSave } from "react-icons/lu";
 
 interface ToolbarProps {
     onClose?: () => void;
+    onSave?: () => void;
     onClear?: () => void;
     onFormat?: () => void;
     onLoad?: () => void;
@@ -13,9 +14,9 @@ interface ToolbarProps {
     onDownloadSvg?: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ onClose, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ onClose, onSave, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
     const { translations } = useLocalization();
-
+    //TODO reverse the order when on right
     return (<div className="toolbar">
         {onClear && (
             <button onClick={onClear} title={translations.toolbarClearTooltip}>
@@ -42,12 +43,16 @@ const Toolbar: React.FC<ToolbarProps> = ({ onClose, onClear, onFormat, onLoad, o
                 <LuFileImage />
             </button>
         )}
+        {onSave && (
+            <button className="toolbar-success" onClick={onSave} title={translations.toolbarSaveTooltip}>
+                <LuSave />
+            </button>
+        )}
         {onClose && (
             <button className="toolbar-danger" onClick={onClose} title={translations.toolbarCloseTooltip}>
                 <CgClose />
             </button>
-        )
-        }
+        )}
     </div >);
 };
 

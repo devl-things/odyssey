@@ -1,7 +1,7 @@
 import { Node } from '@xyflow/react';
 import DiagramNode from "../odyssey-protocol/DiagramNode";
 import NodePosition from '../odyssey-protocol/NodePosition';
-import OdysseyData from './OdysseyData';
+import OdysseyData from '../odyssey-protocol/OdysseyData';
 import { logInDev } from '../../util/logging';
 
 const NODE_TYPE = {

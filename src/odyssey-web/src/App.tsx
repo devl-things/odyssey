@@ -3,16 +3,18 @@ import LocalizationProvider from './contexts/LocalizationProvider';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import DacEditor from './components/dac-editor/DacEditor';
-import Properties from './components/Properties';
+import Properties from './components/properties/Properties';
 import DiagramWindow from './components/diagram-window/DiagramWindow';
 import DiagramModel from './data/odyssey-protocol/DiagramModel';
 import { logInDev } from './util/logging';
+import DiagramNode from './data/odyssey-protocol/DiagramNode';
 
 const App: React.FC = () => {
-  const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
-  const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
-  const [dacInEditor, setDacInEditor] = useState(null);
-  const [dac, setDac] = useState(null);
+  const [leftSidebarVisible, setLeftSidebarVisible] = useState<boolean>(true);
+  const [rightSidebarVisible, setRightSidebarVisible] = useState<boolean>(true);
+  const [dacInEditor, setDacInEditor] = useState<DiagramModel | null>(null);
+  const [dac, setDac] = useState<DiagramModel | null>(null);
+  const [nodeProperties, setNodeProperties] = useState<DiagramNode | null>(null);
 
   const handleToggleLeft = () => {
     setLeftSidebarVisible(prevState => !prevState);
@@ -22,14 +24,20 @@ const App: React.FC = () => {
     setRightSidebarVisible(prevState => !prevState);
   };
 
-  const handleDiagramLoad = (diagram: DiagramModel) => {
+  const handleOnLoad = (diagram: DiagramModel) => {
     setDac(diagram);
     logInDev("[App] Diagram from editor ", diagram);
   };
 
-  const handleEditDiagramInEditor = (diagram: DiagramModel) => {
+  const handleOnEditDiagram = (diagram: DiagramModel) => {
     setDacInEditor(diagram);
     logInDev("[App] Diagram from react flow ", diagram);
+  };
+
+  const handleOnNodeSelect = (node: any) => {
+    setNodeProperties(node.data);
+    setRightSidebarVisible(true);
+    logInDev("[App] Diagram from react flow ", node);
   };
 
   return (
@@ -37,11 +45,11 @@ const App: React.FC = () => {
       <Header onToggleLeft={handleToggleLeft} onToggleRight={handleToggleRight} />
       <div className="main-content">
         <Sidebar isVisible={leftSidebarVisible} position="left">
-          <DacEditor dac={dacInEditor} onClose={handleToggleLeft} onLoad={handleDiagramLoad} />
+          <DacEditor dac={dacInEditor} onClose={handleToggleLeft} onLoad={handleOnLoad} />
         </Sidebar>
-        <DiagramWindow dac={dac} onEditDiagram={handleEditDiagramInEditor} />
+        <DiagramWindow dac={dac} onEditDiagram={handleOnEditDiagram} onNodeSelect={handleOnNodeSelect} />
         <Sidebar isVisible={rightSidebarVisible} position="right">
-          <Properties property="Nothing to see here, yet!" />
+          <Properties node={nodeProperties} onClose={handleToggleRight} />
         </Sidebar>
       </div>
     </LocalizationProvider >

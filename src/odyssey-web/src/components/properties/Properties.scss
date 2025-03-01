@@ -1,0 +1,33 @@
+@use '../../styles/common' as common;
+@use '../../styles/variables' as variables;
+
+$properties-color: variables.$gray-600;
+$properties-corners-radius: variables.$border-radius;
+
+.properties {
+    @include common.odyssey-flex-column;
+
+    p,
+    label {
+        color: $properties-color;
+        font-size: .825rem;
+        font-weight: 400;
+        margin: 3px 7px;
+    }
+
+    input {
+        border: 1px solid $properties-color;
+        border-radius: $properties-corners-radius;
+        margin: 0px 5px;
+    }
+
+    // TODO make this adjustable in Toolbar component
+    .toolbar {
+        justify-content: flex-start;
+
+        button {
+            margin-left: 0px;
+            margin-right: 4px;
+        }
+    }
+}

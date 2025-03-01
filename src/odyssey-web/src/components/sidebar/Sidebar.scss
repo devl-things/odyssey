@@ -85,11 +85,6 @@ html[data-sidebar-behavior=sticky] {
 // Collapse behavior if sidebar is on right side
 #sidebar-right {
 
-    //TODO remove at some point
-    border-color: black;
-    border-width: 1;
-    border-style: solid;
-
     &.collapsed {
         margin-right: -($sidebar-width);
     }

@@ -6,16 +6,13 @@ export interface Translation {
     toolbarLoadTooltip: string;
     toolbarDownloadPdfTooltip: string;
     toolbarDownloadSvgTooltip: string;
+    toolbarSaveTooltip: string;
     toolbarCloseTooltip: string;
-    // Add other translation keys here as needed, e.g.,:
-    // greeting: string;
 }
 
 export interface Translations {
     en: Translation;
     hr: Translation;
-    // You can add more languages here, e.g.,:
-    // es: Translation;
 }
 
 export const DefaultTranslations: Translations = {
@@ -27,6 +24,7 @@ export const DefaultTranslations: Translations = {
         toolbarLoadTooltip: "Load diagram",
         toolbarDownloadPdfTooltip: "Download in PDF",
         toolbarDownloadSvgTooltip: "Download in Svg",
+        toolbarSaveTooltip: "Save",
         toolbarCloseTooltip: "Close sidebar"
     },
     hr: {
@@ -37,6 +35,7 @@ export const DefaultTranslations: Translations = {
         toolbarLoadTooltip: "Učitaj diagram",
         toolbarDownloadPdfTooltip: "Skini PDF",
         toolbarDownloadSvgTooltip: "Skini Svg",
+        toolbarSaveTooltip: "Spremi",
         toolbarCloseTooltip: "Zatvori"
     },
     // Add other languages as needed
