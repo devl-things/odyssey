@@ -1,6 +1,14 @@
+@use './variables' as variables;
+
 @mixin odyssey-flex-column {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     height: 100%;
+}
+
+@mixin odyssey-font($color, $font-weight: variables.$font-weight-normal, $font-size: variables.$font-size-base) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    color: $color;
 }
