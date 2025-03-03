@@ -34,9 +34,10 @@ interface DiagramWindowProps {
     dac?: DiagramModel,
     onEditDiagram: (diagram: DiagramModel) => void;
     onNodeSelect: (node: any) => void;
+    onEdgeSelect: (edge: any) => void;
 }
 
-const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram, onNodeSelect }) => {
+const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram, onNodeSelect, onEdgeSelect }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesII);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesII);
 
@@ -67,6 +68,14 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
         }
     };
 
+    const handleOnEdgeClick = (event: React.MouseEvent, edge: Edge) => {
+        logInDev('click node ', edge, event)
+        if (onEdgeSelect) {
+            //TODO translate to DiagramEdge
+            onEdgeSelect(edge);
+        }
+    };
+
     const handleOnDownloadPdf = () => {
         logInDev("Export in PDF");
     };
@@ -91,6 +100,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
                     onNodeClick={handleOnNodeClick}
+                    onEdgeClick={handleOnEdgeClick}
                 >
                     <MiniMap />
                     {/* <Controls /> */}

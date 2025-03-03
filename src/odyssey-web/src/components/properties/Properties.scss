@@ -6,16 +6,6 @@ $properties-corners-radius: variables.$border-radius;
 
 .properties {
     @include common.odyssey-flex-column;
-
-    // TODO make this adjustable in Toolbar component
-    .toolbar {
-        flex-direction: row-reverse;
-
-        button {
-            margin-left: 0px;
-            margin-right: 4px;
-        }
-    }
 }
 
 .node-properties {

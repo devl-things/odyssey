@@ -10,7 +10,7 @@ export default interface DiagramEdge {
     type: EdgeType;
     overrideInference?: boolean; // Prevents automatic inference at higher levels
     processingType?: ProcessingType; // batch, real-time, delta
-    abel?: string | null;
+    label?: string | null;
     mapping?: FieldMapping[] | null; // Used for field-to-field mapping
     protocol?: Protocol | null;
     security?: EdgeSecurity | null;

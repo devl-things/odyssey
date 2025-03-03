@@ -5,6 +5,7 @@ import { CgClose, CgPlayListRemove } from "react-icons/cg";
 import { LuCode, LuFileDown, LuFileImage, LuLoader, LuSave } from "react-icons/lu";
 
 interface ToolbarProps {
+    isDirectionRight?: boolean;
     onClose?: () => void;
     onSave?: () => void;
     onClear?: () => void;
@@ -14,10 +15,9 @@ interface ToolbarProps {
     onDownloadSvg?: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ onClose, onSave, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, onSave, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
     const { translations } = useLocalization();
-    //TODO reverse the order when on right
-    return (<div className="toolbar">
+    return (<div className={`toolbar ${isDirectionRight ? 'right' : ''}`}>
         {onClear && (
             <button onClick={onClear} title={translations.toolbarClearTooltip}>
                 <CgPlayListRemove />

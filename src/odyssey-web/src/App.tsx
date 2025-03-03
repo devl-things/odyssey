@@ -8,6 +8,7 @@ import DiagramWindow from './components/diagram-window/DiagramWindow';
 import DiagramModel from './data/odyssey-protocol/DiagramModel';
 import { logInDev } from './util/logging';
 import DiagramNode from './data/odyssey-protocol/DiagramNode';
+import DiagramEdge from './data/odyssey-protocol/DiagramEdge';
 
 const App: React.FC = () => {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState<boolean>(true);
@@ -15,6 +16,7 @@ const App: React.FC = () => {
   const [dacInEditor, setDacInEditor] = useState<DiagramModel | null>(null);
   const [dac, setDac] = useState<DiagramModel | null>(null);
   const [nodeProperties, setNodeProperties] = useState<DiagramNode | null>(null);
+  const [edgeProperties, setEdgeProperties] = useState<DiagramEdge | null>(null);
 
   const handleToggleLeft = () => {
     setLeftSidebarVisible(prevState => !prevState);
@@ -36,8 +38,16 @@ const App: React.FC = () => {
 
   const handleOnNodeSelect = (node: any) => {
     setNodeProperties(node.data);
+    setEdgeProperties(null);
     setRightSidebarVisible(true);
     logInDev("[App] Diagram from react flow ", node);
+  };
+
+  const handleOnEdgeSelect = (edge: any) => {
+    setNodeProperties(null);
+    setEdgeProperties(edge);
+    setRightSidebarVisible(true);
+    logInDev("[App] Diagram from react flow ", edge);
   };
 
   return (
@@ -47,9 +57,9 @@ const App: React.FC = () => {
         <Sidebar isVisible={leftSidebarVisible} position="left">
           <DacEditor dac={dacInEditor} onClose={handleToggleLeft} onLoad={handleOnLoad} />
         </Sidebar>
-        <DiagramWindow dac={dac} onEditDiagram={handleOnEditDiagram} onNodeSelect={handleOnNodeSelect} />
+        <DiagramWindow dac={dac} onEditDiagram={handleOnEditDiagram} onNodeSelect={handleOnNodeSelect} onEdgeSelect={handleOnEdgeSelect} />
         <Sidebar isVisible={rightSidebarVisible} position="right">
-          <Properties node={nodeProperties} onClose={handleToggleRight} />
+          <Properties node={nodeProperties} edge={edgeProperties} onClose={handleToggleRight} />
         </Sidebar>
       </div>
     </LocalizationProvider >

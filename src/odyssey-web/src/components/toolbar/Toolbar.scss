@@ -9,6 +9,15 @@ $toolbar-corners-radius: variables.$border-radius;
     justify-content: flex-end;
     margin-bottom: 1px;
 
+    &.right {
+        flex-direction: row-reverse;
+
+        button {
+            margin-left: 0px;
+            margin-right: 4px;
+        }
+    }
+
     button {
         margin-left: 4px;
         background-color: inherit;

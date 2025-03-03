@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
 import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
@@ -34,20 +34,26 @@ const reducer = (state: DiagramNode | null, action: NodePropertiesAction): Diagr
 };
 
 const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSave }) => {
-    const [saved, setSaved] = useState<boolean>(false);
     const [diagramNode, dispatch] = useReducer(reducer, null);
+    const diagramNodeInitialValue = useRef(node);
+
     useEffect(() => {
         if (diagramNode) {
-            setSaved(true);
             logInDev("vraceno", diagramNode);
             onSave(diagramNode);
         }
     }, [triggerSave]);
+
     useEffect(() => {
         if (node) {
             dispatch({ type: NodePropertiesActionTypes.SetNode, payload: node });
+            diagramNodeInitialValue.current = node;
         }
     }, [node]);
+
+    const isModified = (field: keyof DiagramNode) => {
+        return diagramNode[field] !== diagramNodeInitialValue.current[field];
+    };
 
     const handleChange = useCallback((field: keyof DiagramNode, value: string) => {
         dispatch({ type: NodePropertiesActionTypes.SetField, field, value });
@@ -57,20 +63,27 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
         <div className='node-properties'>
             {diagramNode && (<>
                 <ReadOnlyProperty label="Id" value={diagramNode.id} />
-                <DropdownProperty options={Object.values(NodeType)} label="Type" name="type" value={diagramNode.type} onChange={handleChange} saved={saved} />
-                <TextProperty label="Name" name="name" value={diagramNode.name} onChange={handleChange} saved={saved} />
-                <DropdownProperty options={Object.values(Layer)} label="Layer" name="layer" value={diagramNode.layer} onChange={handleChange} saved={saved} />
+                <DropdownProperty label="Type" name="type" value={diagramNode.type} isModified={isModified("type")}
+                    options={Object.values(NodeType)} onChange={handleChange} />
+                <TextProperty label="Name" name="name" value={diagramNode.name} isModified={isModified("name")}
+                    onChange={handleChange} />
+                <DropdownProperty label="Layer" name="layer" value={diagramNode.layer} isModified={isModified("layer")}
+                    options={Object.values(Layer)} onChange={handleChange} />
                 <ReadOnlyProperty label="Parent" value={diagramNode.parent} />
                 {/* TODO icon */}
-                <TextProperty label="Icon" name="icon" value={diagramNode.icon} onChange={handleChange} saved={saved} />
+                <TextProperty label="Icon" name="icon" value={diagramNode.icon} isModified={isModified("icon")}
+                    onChange={handleChange} />
                 <ReadOnlyProperty label="Position" value={JSON.stringify(diagramNode.position)} />
                 {/* TODO style */}
                 <ReadOnlyProperty label="Style" value={JSON.stringify(diagramNode.style)} />
-                <TextProperty label="Url" name="url" value={diagramNode.url} onChange={handleChange} saved={saved} />
+                <TextProperty label="Url" name="url" value={diagramNode.url} isModified={isModified("url")}
+                    onChange={handleChange} />
                 {/* TODO fields ??*/}
                 <ReadOnlyProperty label="Fields" value={JSON.stringify(diagramNode.fields)} />
-                <DropdownProperty options={Object.values(ApiMethod)} label="Method" name="method" value={diagramNode.method} onChange={handleChange} saved={saved} />
-                <DropdownProperty options={Object.values(ApiDirection)} label="Direction" name="direction" value={diagramNode.direction} onChange={handleChange} saved={saved} />
+                <DropdownProperty label="Method" name="method" value={diagramNode.method} isModified={isModified("method")}
+                    options={Object.values(ApiMethod)} onChange={handleChange} />
+                <DropdownProperty label="Direction" name="direction" value={diagramNode.direction} isModified={isModified("direction")}
+                    options={Object.values(ApiDirection)} onChange={handleChange} />
                 {/* TODO extensions ??*/}
                 <ReadOnlyProperty label="Extensions" value={JSON.stringify(diagramNode.extensions)} />
             </>)

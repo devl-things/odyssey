@@ -1,26 +1,19 @@
-import React, { memo, useEffect, useState } from "react";
-import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
+import React, { memo } from "react";
 import './Properties.scss';
 
 interface DropdownPropertyProps<T extends string> {
     label: string;
-    name: keyof DiagramNode;
+    name: string;
     value?: T;
     options: readonly T[];
-    onChange: (field: keyof DiagramNode, value: T) => void;
-    saved?: boolean;
+    isModified: boolean,
+    onChange: (field: string, value: T) => void;
 }
 
-const DropdownProperty = <T extends string>({ label, name, value, options, onChange, saved }: DropdownPropertyProps<T>) => {
-    const [isModified, setIsModified] = useState(false);
-
-    useEffect(() => {
-        setIsModified(false);
-    }, [saved]);
+const DropdownProperty = <T extends string>({ label, name, value, options, isModified = false, onChange }: DropdownPropertyProps<T>) => {
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         onChange(name, e.target.value as T);
-        setIsModified(true);
     };
 
     return (

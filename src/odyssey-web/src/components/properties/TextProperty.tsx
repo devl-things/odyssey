@@ -1,28 +1,18 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
+import React, { memo } from "react";
 import './Properties.scss';
 
 interface TextPropertyProps {
     label: string;
-    name: keyof DiagramNode;
+    name: string;
     value?: string;
-    onChange: (field: keyof DiagramNode, value: string) => void;
-    saved?: boolean;
+    isModified: boolean,
+    onChange: (field: string, value: string) => void;
 }
 
-const TextProperty: React.FC<TextPropertyProps> = ({ label, name, value, onChange, saved }) => {
-    const [isModified, setIsModified] = useState(false);
-    const initialValueRef = useRef(value);
-    console.log("ref ", initialValueRef);
-    useEffect(() => {
-        setIsModified(false);
-        initialValueRef.current = value;
-    }, [saved]);
+const TextProperty: React.FC<TextPropertyProps> = ({ label, name, value, isModified = false, onChange }) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
-        onChange(name, newValue);
-        setIsModified(newValue !== initialValueRef.current);
+        onChange(name, e.target.value);
     };
 
     return (
