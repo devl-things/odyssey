@@ -1,5 +1,6 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
+import TextProperty from "./TextProperty";
 import './Properties.scss';
 
 interface NodePropertiesProps {
@@ -28,9 +29,11 @@ const reducer = (state: DiagramNode | null, action: NodePropertiesAction): Diagr
 };
 
 const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSave }) => {
+    const [saved, setSaved] = useState<boolean>(false);
     const [diagramNode, dispatch] = useReducer(reducer, null);
     useEffect(() => {
         if (diagramNode) {
+            setSaved(true);
             onSave(diagramNode);
         }
     }, [triggerSave]);
@@ -45,7 +48,7 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
     };
 
     return (
-        <div className='properties'>
+        <div className='node-properties'>
             {diagramNode && (<>
                 <p>ID</p>
                 <input
@@ -54,14 +57,15 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
                     value={diagramNode.id}
                     onChange={(e) => handleChange("id", e.target.value)}
                 />
-
-                <p>Type</p>
+                {/* <TextProperty label="Type" name="type" value={diagramNode.type} onChange={handleChange} saved={saved} /> */}
+                <TextProperty onChange={handleChange} />
+                {/* <p>Type</p>
                 <input
                     type="text"
                     name="type"
                     value={diagramNode.type}
                     onChange={(e) => handleChange("type", e.target.value)}
-                />
+                /> */}
 
                 <p>Name</p>
                 <input
