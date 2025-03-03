@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import DiagramNode from '../../data/odyssey-protocol/DiagramNode';
 import { logInDev } from '../../util/logging';
 import NodeProperties from './NodeProperties';
-import LabelInputComponent from './LabelInputComponent';
 import Toolbar from '../toolbar/Toolbar';
 import './Properties.scss';
 
@@ -23,7 +22,6 @@ const Properties: React.FC<PropertiesProps> = ({ node, onClose }) => {
     return (
         <div className='properties'>
             <Toolbar onClose={onClose} onSave={handleTriggerOnSave} />
-            <LabelInputComponent labelText='somethign' />
             {node && (<NodeProperties node={node} triggerSave={triggerSave} onSave={handleOnSave} />)}
         </div>
     );

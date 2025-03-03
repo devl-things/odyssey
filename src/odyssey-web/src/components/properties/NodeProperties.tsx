@@ -1,7 +1,12 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
+import DropdownProperty from "./DropdownProperty";
+import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
 import './Properties.scss';
+import { logInDev } from "../../util/logging";
+import { ApiDirection, ApiMethod, Layer, NodeType } from "../../data/odyssey-protocol/Enums";
+
 
 interface NodePropertiesProps {
     node: DiagramNode;
@@ -34,6 +39,7 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
     useEffect(() => {
         if (diagramNode) {
             setSaved(true);
+            logInDev("vraceno", diagramNode);
             onSave(diagramNode);
         }
     }, [triggerSave]);
@@ -43,70 +49,30 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
         }
     }, [node]);
 
-    const handleChange = (field: keyof DiagramNode, value: string) => {
+    const handleChange = useCallback((field: keyof DiagramNode, value: string) => {
         dispatch({ type: NodePropertiesActionTypes.SetField, field, value });
-    };
+    }, []);
 
     return (
         <div className='node-properties'>
             {diagramNode && (<>
-                <p>ID</p>
-                <input
-                    type="text"
-                    name="id"
-                    value={diagramNode.id}
-                    onChange={(e) => handleChange("id", e.target.value)}
-                />
-                {/* <TextProperty label="Type" name="type" value={diagramNode.type} onChange={handleChange} saved={saved} /> */}
-                <TextProperty onChange={handleChange} />
-                {/* <p>Type</p>
-                <input
-                    type="text"
-                    name="type"
-                    value={diagramNode.type}
-                    onChange={(e) => handleChange("type", e.target.value)}
-                /> */}
-
-                <p>Name</p>
-                <input
-                    type="text"
-                    name="name"
-                    value={diagramNode.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                />
-
-                <p>Layer</p>
-                <input
-                    type="text"
-                    name="layer"
-                    value={diagramNode.layer}
-                    onChange={(e) => handleChange("layer", e.target.value)}
-                />
-
-                <p>Icon</p>
-                <input
-                    type="text"
-                    name="icon"
-                    value={diagramNode.icon || ""}
-                    onChange={(e) => handleChange("icon", e.target.value)}
-                />
-
-                <p>Parent</p>
-                <input
-                    type="text"
-                    name="parent"
-                    value={diagramNode.parent || ""}
-                    onChange={(e) => handleChange("parent", e.target.value)}
-                />
-
-                <p>URL</p>
-                <input
-                    type="text"
-                    name="url"
-                    value={diagramNode.url || ""}
-                    onChange={(e) => handleChange("url", e.target.value)}
-                />
-
+                <ReadOnlyProperty label="Id" value={diagramNode.id} />
+                <DropdownProperty options={Object.values(NodeType)} label="Type" name="type" value={diagramNode.type} onChange={handleChange} saved={saved} />
+                <TextProperty label="Name" name="name" value={diagramNode.name} onChange={handleChange} saved={saved} />
+                <DropdownProperty options={Object.values(Layer)} label="Layer" name="layer" value={diagramNode.layer} onChange={handleChange} saved={saved} />
+                <ReadOnlyProperty label="Parent" value={diagramNode.parent} />
+                {/* TODO icon */}
+                <TextProperty label="Icon" name="icon" value={diagramNode.icon} onChange={handleChange} saved={saved} />
+                <ReadOnlyProperty label="Position" value={JSON.stringify(diagramNode.position)} />
+                {/* TODO style */}
+                <ReadOnlyProperty label="Style" value={JSON.stringify(diagramNode.style)} />
+                <TextProperty label="Url" name="url" value={diagramNode.url} onChange={handleChange} saved={saved} />
+                {/* TODO fields ??*/}
+                <ReadOnlyProperty label="Fields" value={JSON.stringify(diagramNode.fields)} />
+                <DropdownProperty options={Object.values(ApiMethod)} label="Method" name="method" value={diagramNode.method} onChange={handleChange} saved={saved} />
+                <DropdownProperty options={Object.values(ApiDirection)} label="Direction" name="direction" value={diagramNode.direction} onChange={handleChange} saved={saved} />
+                {/* TODO extensions ??*/}
+                <ReadOnlyProperty label="Extensions" value={JSON.stringify(diagramNode.extensions)} />
             </>)
             }
         </div>
