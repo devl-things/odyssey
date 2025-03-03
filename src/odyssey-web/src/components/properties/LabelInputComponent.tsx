@@ -21,9 +21,19 @@ const LabelInputComponent: React.FC<LabelInputComponentProps> = ({ labelText, pl
 
     return (
         <div>
+            {/* <div style={{
+                fontWeight: 'bold',
+                visibility: 'hidden',
+                position: 'absolute',
+                top: '-9999px',
+                left: '-9999px'
+            }}>
+                Font Loader
+            </div> */}
             <label
                 htmlFor="myInput"
                 style={{ fontWeight: isBold ? 'bold' : 'normal' }}
+            //style={{ color: isBold ? 'red' : 'black' }}
             >
                 {labelText}
             </label>

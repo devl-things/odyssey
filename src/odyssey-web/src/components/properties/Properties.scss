@@ -28,7 +28,8 @@ $properties-corners-radius: variables.$border-radius;
         &.modified {
             //@include common.odyssey-font($properties-color, variables.$font-weight-bold);
             //background-color: black;
-            font-weight: variables.$font-weight-bold;
+            //font-weight: variables.$font-weight-bold;
+            color: black;
         }
     }
 
