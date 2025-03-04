@@ -3,6 +3,7 @@ import { useLocalization } from '../../contexts/useLocalization';
 import './Toolbar.scss';
 import { CgClose, CgPlayListRemove } from "react-icons/cg";
 import { LuCode, LuFileDown, LuFileImage, LuFileJson, LuLoader, LuSave } from "react-icons/lu";
+import { logInDev } from "../../util/logging";
 
 interface ToolbarProps {
     isDirectionRight?: boolean;
@@ -18,7 +19,7 @@ interface ToolbarProps {
 
 const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, onSave, onClear, onFormat, onLoad, onDownloadJson, onDownloadPdf, onDownloadSvg }) => {
     const { translations } = useLocalization();
-    console.log("Toolbar rendered", isDirectionRight);
+    logInDev("[Toolbar] rendered", isDirectionRight);
     return (<div className={`toolbar ${isDirectionRight ? 'right' : ''}`}>
         {onClear && (
             <button onClick={onClear} title={translations.toolbarClearTooltip}>

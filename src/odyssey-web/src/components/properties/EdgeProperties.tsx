@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import DiagramEdge from "../../data/odyssey-protocol/DiagramEdge";
+import { EdgeType, ProcessingType, Protocol } from "../../data/odyssey-protocol/Enums";
+import DiagramEdgeReducer, { DiagramEdgeActionTypes } from "../../reducers/DiagramEdgeReducer";
 import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
 import './Properties.scss';
-import { logInDev } from "../../util/logging";
-import { EdgeType, ProcessingType, Protocol } from "../../data/odyssey-protocol/Enums";
-
 
 interface EdgePropertiesProps {
     edge: DiagramEdge;
@@ -14,39 +13,19 @@ interface EdgePropertiesProps {
     onSave: (node: DiagramEdge) => void;
 }
 
-enum EdgePropertiesActionTypes {
-    SetField = "set-field",
-    SetEdge = "set-edge"
-};
-type EdgePropertiesAction =
-    | { type: EdgePropertiesActionTypes.SetEdge; payload: DiagramEdge }
-    | { type: EdgePropertiesActionTypes.SetField; field: keyof DiagramEdge; value: any };
-
-const reducer = (state: DiagramEdge | null, action: EdgePropertiesAction): DiagramEdge | null => {
-    switch (action.type) {
-        case EdgePropertiesActionTypes.SetEdge:
-            return action.payload;
-        case EdgePropertiesActionTypes.SetField:
-            return state ? { ...state, [action.field]: action.value } : null;
-        default:
-            return state;
-    }
-};
-
 const EdgeProperties: React.FC<EdgePropertiesProps> = ({ edge, triggerSave, onSave }) => {
-    const [diagramEdge, dispatch] = useReducer(reducer, null);
+    const [diagramEdge, dispatch] = useReducer(DiagramEdgeReducer, null);
     const diagramEdgeInitialValue = useRef(edge);
 
     useEffect(() => {
         if (diagramEdge) {
-            logInDev("vraceno", diagramEdge);
             onSave(diagramEdge);
         }
     }, [triggerSave]);
 
     useEffect(() => {
         if (edge) {
-            dispatch({ type: EdgePropertiesActionTypes.SetEdge, payload: edge });
+            dispatch({ type: DiagramEdgeActionTypes.SetEdge, payload: edge });
             diagramEdgeInitialValue.current = edge;
         }
     }, [edge]);
@@ -56,7 +35,7 @@ const EdgeProperties: React.FC<EdgePropertiesProps> = ({ edge, triggerSave, onSa
     };
 
     const handleChange = useCallback((field: keyof DiagramEdge, value: string) => {
-        dispatch({ type: EdgePropertiesActionTypes.SetField, field, value });
+        dispatch({ type: DiagramEdgeActionTypes.SetField, field, value });
     }, []);
 
     return (

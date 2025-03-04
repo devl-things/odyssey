@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
+import { ApiDirection, ApiMethod, Layer, NodeType } from "../../data/odyssey-protocol/Enums";
+import DiagramNodeReducer, { DiagramNodeActionTypes } from "../../reducers/DiagramNodeReducer";
 import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
 import './Properties.scss';
-import { logInDev } from "../../util/logging";
-import { ApiDirection, ApiMethod, Layer, NodeType } from "../../data/odyssey-protocol/Enums";
-
 
 interface NodePropertiesProps {
     node: DiagramNode;
@@ -14,39 +13,20 @@ interface NodePropertiesProps {
     onSave: (node: DiagramNode) => void;
 }
 
-enum NodePropertiesActionTypes {
-    SetField = "set-field",
-    SetNode = "set-node"
-};
-type NodePropertiesAction =
-    | { type: NodePropertiesActionTypes.SetNode; payload: DiagramNode }
-    | { type: NodePropertiesActionTypes.SetField; field: keyof DiagramNode; value: any };
-
-const reducer = (state: DiagramNode | null, action: NodePropertiesAction): DiagramNode | null => {
-    switch (action.type) {
-        case NodePropertiesActionTypes.SetNode:
-            return action.payload;
-        case NodePropertiesActionTypes.SetField:
-            return state ? { ...state, [action.field]: action.value } : null;
-        default:
-            return state;
-    }
-};
-
 const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSave }) => {
-    const [diagramNode, dispatch] = useReducer(reducer, null);
+    const [diagramNode, dispatch] = useReducer(DiagramNodeReducer, null);
     const diagramNodeInitialValue = useRef(node);
 
+    //BUG on save labels stay bolded
     useEffect(() => {
         if (diagramNode) {
-            logInDev("vraceno", diagramNode);
             onSave(diagramNode);
         }
     }, [triggerSave]);
 
     useEffect(() => {
         if (node) {
-            dispatch({ type: NodePropertiesActionTypes.SetNode, payload: node });
+            dispatch({ type: DiagramNodeActionTypes.SetNode, payload: node });
             diagramNodeInitialValue.current = node;
         }
     }, [node]);
@@ -56,7 +36,7 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
     };
 
     const handleChange = useCallback((field: keyof DiagramNode, value: string) => {
-        dispatch({ type: NodePropertiesActionTypes.SetField, field, value });
+        dispatch({ type: DiagramNodeActionTypes.SetField, field, value });
     }, []);
 
     return (

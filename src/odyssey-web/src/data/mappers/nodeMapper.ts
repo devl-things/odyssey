@@ -11,12 +11,12 @@ const NODE_TYPE = {
 
 type ReactFlowNodeType = typeof NODE_TYPE[keyof typeof NODE_TYPE];
 
-export const mapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => {
+export const MapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => {
     const reactFlowNodes: Node<OdysseyData>[] = [];
     if (diagramNodes) {
         diagramNodes.forEach((diagramNode: DiagramNode, index: number) => {
             let nodeType: ReactFlowNodeType = NODE_TYPE.DEFAULT;
-            const reactFlowNode = mapToNode(diagramNode, nodeType);
+            const reactFlowNode = MapToNode(diagramNode, nodeType);
             if (diagramNode.parent) {
                 // if this is not set than parent will stretch to cover/include all children
                 reactFlowNode.extent = 'parent';
@@ -28,11 +28,11 @@ export const mapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
             reactFlowNodes.push(reactFlowNode);
         });
     }
-    logInDev(reactFlowNodes);
+    logInDev("[nodeMapper] mapToNodes", reactFlowNodes);
     return reactFlowNodes;
 };
 
-export const mapToNode = (diagramNode: DiagramNode, nodeType: ReactFlowNodeType): Node<OdysseyData> => {
+export const MapToNode = (diagramNode: DiagramNode, nodeType: ReactFlowNodeType): Node<OdysseyData> => {
     return {
         id: diagramNode.id,
         type: nodeType,
@@ -55,25 +55,25 @@ export const mapToNode = (diagramNode: DiagramNode, nodeType: ReactFlowNodeType)
     };
 };
 
-export const mapToDiagramNodes = (nodes: Node<OdysseyData>[]): DiagramNode[] => {
+export const MapToDiagramNodes = (nodes: Node<OdysseyData>[]): DiagramNode[] => {
     const diagramNodes: DiagramNode[] = [];
     if (nodes) {
         nodes.forEach((node: Node<OdysseyData>) => {
-            const diagramNode = mapToDiagramNode(node);
+            const diagramNode = MapToDiagramNode(node);
             diagramNodes.push(diagramNode);
         });
     }
     return diagramNodes;
 };
 
-export const mapToDiagramNode = (node: Node<OdysseyData>): DiagramNode => {
+export const MapToDiagramNode = (node: Node<OdysseyData>): DiagramNode => {
     return {
         id: node.id,
         type: node.data.type,
         name: node.data.name,
         layer: node.data.layer,
         position: node.position as NodePosition,
-        parent: node.data.parent,
+        parent: node.parentId ?? node.data.parent,
         icon: node.data.icon,
         style: node.data.style,
         url: node.data.url,
