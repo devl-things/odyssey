@@ -1,5 +1,8 @@
 @use 'sass:color';
 
+//TIPS [1] this in combination with preload in index.html gets the font to be preloaded and ready to use, 
+// without duplicate downloads. It's important that url is the same as in preload
+
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-Regular.ttf') format('truetype');
