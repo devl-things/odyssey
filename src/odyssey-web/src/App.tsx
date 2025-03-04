@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import LocalizationProvider from './contexts/LocalizationProvider';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
@@ -18,13 +18,13 @@ const App: React.FC = () => {
   const [nodeProperties, setNodeProperties] = useState<DiagramNode | null>(null);
   const [edgeProperties, setEdgeProperties] = useState<DiagramEdge | null>(null);
 
-  const handleToggleLeft = () => {
+  const handleToggleLeft = useCallback(() => {
     setLeftSidebarVisible(prevState => !prevState);
-  };
+  }, []);
 
-  const handleToggleRight = () => {
+  const handleToggleRight = useCallback(() => {
     setRightSidebarVisible(prevState => !prevState);
-  };
+  }, []);
 
   const handleOnLoad = (diagram: DiagramModel) => {
     setDac(diagram);
@@ -36,14 +36,14 @@ const App: React.FC = () => {
     logInDev("[App] Diagram from react flow ", diagram);
   };
 
-  const handleOnNodeSelect = (node: any) => {
-    setNodeProperties(node.data);
+  const handleOnNodeSelect = (node: DiagramNode) => {
+    setNodeProperties(node);
     setEdgeProperties(null);
     setRightSidebarVisible(true);
     logInDev("[App] Diagram from react flow ", node);
   };
 
-  const handleOnEdgeSelect = (edge: any) => {
+  const handleOnEdgeSelect = (edge: DiagramEdge) => {
     setNodeProperties(null);
     setEdgeProperties(edge);
     setRightSidebarVisible(true);

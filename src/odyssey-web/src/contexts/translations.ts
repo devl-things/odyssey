@@ -4,6 +4,7 @@ export interface Translation {
     toolbarClearTooltip: string,
     toolbarFormatTooltip: string;
     toolbarLoadTooltip: string;
+    toolbarDownloadJsonTooltip: string,
     toolbarDownloadPdfTooltip: string;
     toolbarDownloadSvgTooltip: string;
     toolbarSaveTooltip: string;
@@ -22,6 +23,7 @@ export const DefaultTranslations: Translations = {
         toolbarClearTooltip: "Clear json",
         toolbarFormatTooltip: "Format json",
         toolbarLoadTooltip: "Load diagram",
+        toolbarDownloadJsonTooltip: "Download in Json",
         toolbarDownloadPdfTooltip: "Download in PDF",
         toolbarDownloadSvgTooltip: "Download in Svg",
         toolbarSaveTooltip: "Save",
@@ -33,6 +35,7 @@ export const DefaultTranslations: Translations = {
         toolbarClearTooltip: "Počisti",
         toolbarFormatTooltip: "Formatiraj",
         toolbarLoadTooltip: "Učitaj diagram",
+        toolbarDownloadJsonTooltip: "Skini Json",
         toolbarDownloadPdfTooltip: "Skini PDF",
         toolbarDownloadSvgTooltip: "Skini Svg",
         toolbarSaveTooltip: "Spremi",

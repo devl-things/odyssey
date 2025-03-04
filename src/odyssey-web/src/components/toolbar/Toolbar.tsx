@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { useLocalization } from '../../contexts/useLocalization';
 import './Toolbar.scss';
 import { CgClose, CgPlayListRemove } from "react-icons/cg";
-import { LuCode, LuFileDown, LuFileImage, LuLoader, LuSave } from "react-icons/lu";
+import { LuCode, LuFileDown, LuFileImage, LuFileJson, LuLoader, LuSave } from "react-icons/lu";
 
 interface ToolbarProps {
     isDirectionRight?: boolean;
@@ -11,12 +11,14 @@ interface ToolbarProps {
     onClear?: () => void;
     onFormat?: () => void;
     onLoad?: () => void;
+    onDownloadJson?: () => void;
     onDownloadPdf?: () => void;
     onDownloadSvg?: () => void;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, onSave, onClear, onFormat, onLoad, onDownloadPdf, onDownloadSvg }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, onSave, onClear, onFormat, onLoad, onDownloadJson, onDownloadPdf, onDownloadSvg }) => {
     const { translations } = useLocalization();
+    console.log("Toolbar rendered", isDirectionRight);
     return (<div className={`toolbar ${isDirectionRight ? 'right' : ''}`}>
         {onClear && (
             <button onClick={onClear} title={translations.toolbarClearTooltip}>
@@ -31,6 +33,11 @@ const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, on
         {onLoad && (
             <button className="toolbar-success" onClick={onLoad} title={translations.toolbarLoadTooltip}>
                 <LuLoader />
+            </button>
+        )}
+        {onDownloadJson && (
+            <button onClick={onDownloadJson} title={translations.toolbarDownloadJsonTooltip}>
+                <LuFileJson />
             </button>
         )}
         {onDownloadPdf && (
@@ -56,4 +63,4 @@ const Toolbar: React.FC<ToolbarProps> = ({ isDirectionRight = false, onClose, on
     </div >);
 };
 
-export default Toolbar;
+export default memo(Toolbar);

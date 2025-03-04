@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import Prism from "prismjs";
 import "prismjs/components/prism-json"; // Import JSON language support
 // import "prismjs/themes/prism-tomorrow.css"; // Theme for syntax highlighting
@@ -6,6 +6,7 @@ import "prismjs/components/prism-json"; // Import JSON language support
 import "./DacEditor.scss";
 import DiagramModel from "../../data/odyssey-protocol/DiagramModel";
 import { isDiagramModel } from "../../data/odyssey-protocol/typeGuard";
+import { logInDev } from "../../util/logging";
 import Toolbar from "../toolbar/Toolbar";
 
 interface DacEditorProps {
@@ -22,12 +23,6 @@ const toIndentedString = (obj: object): string => {
 
 const DacEditor: React.FC<DacEditorProps> = ({ dac = null, onClose, onLoad }) => {
     const contentRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (contentRef.current) {
-            contentRef.current.innerText = toIndentedString(dac);
-        }
-    }, [dac]);
 
     // Moves the caret to the end of the content
     const moveCaretToEnd = () => {
@@ -56,31 +51,11 @@ const DacEditor: React.FC<DacEditorProps> = ({ dac = null, onClose, onLoad }) =>
         }
     };
 
-    const handleOnLoad = () => {
-        try {
-            onLoad(getDiagramModelFromEditor());
+    useEffect(() => {
+        if (contentRef.current) {
+            contentRef.current.innerText = toIndentedString(dac);
         }
-        catch (error) {
-            alert("Invalid model: " + error);
-        }
-    };
-
-    const handleOnClear = () => {
-        if (!contentRef.current) return;
-        contentRef.current.innerText = "";
-    };
-
-    // Pretty print JSON, highlight with Prism.js, and move cursor to end
-    const handleOnFormat = () => {
-        try {
-            let diagram: DiagramModel = getDiagramModelFromEditor();
-            const formattedJSON = toIndentedString(diagram);
-            contentRef.current.innerHTML = Prism.highlight(formattedJSON, Prism.languages.json, "json");
-        } catch (error) {
-            alert("Invalid JSON: " + error);
-        }
-        moveCaretToEnd(); // Ensure the caret moves to the end
-    };
+    }, [dac]);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -119,9 +94,40 @@ const DacEditor: React.FC<DacEditorProps> = ({ dac = null, onClose, onLoad }) =>
         };
     }, []);
 
+    const handleOnLoad = useCallback(() => {
+        try {
+            onLoad(getDiagramModelFromEditor());
+        }
+        catch (error) {
+            alert("Invalid model: " + error);
+        }
+    }, []);
+
+    const handleOnClear = useCallback(() => {
+        if (!contentRef.current) return;
+        contentRef.current.innerText = "";
+    }, []);
+
+    // Pretty print JSON, highlight with Prism.js, and move cursor to end
+    const handleOnFormat = useCallback(() => {
+        try {
+            let diagram: DiagramModel = getDiagramModelFromEditor();
+            const formattedJSON = toIndentedString(diagram);
+            contentRef.current.innerHTML = Prism.highlight(formattedJSON, Prism.languages.json, "json");
+        } catch (error) {
+            alert("Invalid JSON: " + error);
+        }
+        moveCaretToEnd(); // Ensure the caret moves to the end
+    }, []);
+
+    const handleOnDownloadJson = useCallback(() => {
+        //TODO #18
+        logInDev("Export in Json");
+    }, []);
+
     return (
         <div className="dac-editor">
-            <Toolbar onFormat={handleOnFormat} onClose={onClose} onLoad={handleOnLoad} onClear={handleOnClear} />
+            <Toolbar onFormat={handleOnFormat} onDownloadJson={handleOnDownloadJson} onClose={onClose} onLoad={handleOnLoad} onClear={handleOnClear} />
             <div
                 ref={contentRef}
                 className="dac-editor-element"
