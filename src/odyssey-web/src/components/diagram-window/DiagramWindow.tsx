@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import {
     ReactFlow, MiniMap, Node, Edge, useNodesState, useEdgesState, addEdge
     // Controls,
@@ -14,6 +14,7 @@ import './DiagramWindow.scss';
 import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
 import DiagramNode from '../../data/odyssey-protocol/DiagramNode';
 import DiagramEdge from '../../data/odyssey-protocol/DiagramEdge';
+import OdysseyNodeTypes from '../diagram-nodes/OdysseyNodeTypes';
 
 interface DiagramWindowProps {
     dac?: DiagramModel,
@@ -25,6 +26,10 @@ interface DiagramWindowProps {
 const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram, onNodeSelect, onEdgeSelect }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState<Node<OdysseyData>>([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+
+    const nodeTypes = useMemo(() => (OdysseyNodeTypes), []);
+
+    logInDev("[DiagramWindow] nodeTypes ", nodeTypes);
 
     useEffect(() => {
         logInDev("[DiagramWindow] Diagram from editor ", dac);
@@ -81,6 +86,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                     onConnect={onConnect}
                     onNodeClick={handleOnNodeClick}
                     onEdgeClick={handleOnEdgeClick}
+                    nodeTypes={nodeTypes}
                 >
                     <MiniMap />
                     {/* <Controls /> */}
