@@ -1,6 +1,5 @@
 @use '../../styles/variables' as variables;
 @use "./sidebar-theme" as sidebar_mixin;
-@use "bootstrap/scss/bootstrap" as bootstrap;
 
 // Sidebar general
 $sidebar-width: 300px !default;
@@ -29,39 +28,6 @@ $sidebar-bg: (
     @include sidebar_mixin.sidebar-theme("background", $sidebar-bg);
 }
 
-html[data-sidebar-behavior=sticky] {
-    .sidebar-content {
-        height: 100vh;
-        position: sticky;
-        top: 0;
-        left: 0;
-    }
-}
-
-// Chevron
-.sidebar [data-bs-toggle="collapse"] {
-    position: relative;
-}
-
-.sidebar [data-bs-toggle="collapse"]:before {
-    content: " ";
-    border: solid;
-    border-width: 0 .1rem .1rem 0;
-    display: inline-block;
-    padding: 2px;
-    transform: rotate(45deg);
-    position: absolute;
-    top: 1rem;
-    right: 1.7rem;
-    transition: all .2s ease-out;
-}
-
-.sidebar [aria-expanded="true"]:before,
-.sidebar [data-bs-toggle="collapse"]:not(.collapsed):before {
-    transform: rotate(-135deg);
-    top: 1.2rem;
-}
-
 // Collapse behavior if sidebar is on left side
 #sidebar-left {
     &.collapsed {
@@ -70,7 +36,7 @@ html[data-sidebar-behavior=sticky] {
 
     // Workaround for IE bug, more info:
     // https://stackoverflow.com/a/25850649
-    @media (min-width: 1px) and (max-width: #{map-get(bootstrap.$grid-breakpoints, 'lg') - .02px}) {
+    @media (min-width: 1px) and (max-width: #{map-get(variables.$breakpoints, 'lg') - .02px}) {
 
         // Sidebar default state (on mobile)
         margin-left: -($sidebar-width);
@@ -91,7 +57,7 @@ html[data-sidebar-behavior=sticky] {
 
     // Workaround for IE bug, more info:
     // https://stackoverflow.com/a/25850649
-    @media (min-width: 1px) and (max-width: #{map-get(bootstrap.$grid-breakpoints, 'lg') - .02px}) {
+    @media (min-width: 1px) and (max-width: #{map-get(variables.$breakpoints, 'lg') - .02px}) {
 
         // Sidebar default state (on mobile)
         margin-right: -($sidebar-width);

@@ -1,3 +1,4 @@
+@use "bootstrap/scss/bootstrap" as bootstrap;
 @use 'sass:color';
 
 //TIPS [1] this in combination with preload in index.html gets the font to be preloaded and ready to use, 
@@ -16,6 +17,8 @@
   font-weight: 600;
   font-style: normal;
 }
+
+$breakpoints: bootstrap.$grid-breakpoints;
 
 // Options
 $prefix: bs- !default;
