@@ -1,0 +1,44 @@
+@use './variables' as variables;
+
+@mixin odyssey-flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+@mixin odyssey-font($color, $font-weight: variables.$font-weight-normal, $font-size: variables.$font-size-base) {
+    @include odyssey-font-weight();
+    font-size: $font-size;
+    color: $color;
+}
+
+@mixin odyssey-font-weight($font-weight: variables.$font-weight-normal) {
+    font-weight: $font-weight;
+}
+
+@mixin odyssey-sidebar-grow() {
+    overflow-y: auto; // Enables scrollbar when needed
+    flex-grow: 1; // Allows it to take up available space
+
+    /* Custom Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+    // &::-webkit-scrollbar {
+    //     width: 8px; // Width of the scrollbar
+    // }
+
+    &::-webkit-scrollbar-track {
+        background: variables.$gray-100; // Background color of the track
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: variables.$gray-600; // Color of the scrollbar thumb
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: variables.$black; // Darker color when hovered
+    }
+
+    /* Custom Scrollbar for Firefox */
+    scrollbar-width: thin; // "thin", "auto", or "none"
+    scrollbar-color: variables.$gray-600 variables.$gray-100; // thumb color & track color
+}

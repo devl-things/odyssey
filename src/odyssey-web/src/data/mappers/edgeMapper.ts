@@ -2,17 +2,17 @@ import { Edge } from '@xyflow/react';
 import DiagramEdge from "../odyssey-protocol/DiagramEdge";
 import { EdgeType } from '../odyssey-protocol/Enums';
 
-export const mapToEdges = (diagramEdges: DiagramEdge[]): Edge[] => {
+export const MapToEdges = (diagramEdges: DiagramEdge[]): Edge[] => {
     const reactFlowEdges: Edge[] = [];
     if (diagramEdges) {
         diagramEdges.forEach((diagramEdge: DiagramEdge) => {
-            reactFlowEdges.push(mapToEdge(diagramEdge));
+            reactFlowEdges.push(MapToEdge(diagramEdge));
         });
     }
     return reactFlowEdges;
 };
 
-export const mapToEdge = (diagramEdge: DiagramEdge): Edge => {
+export const MapToEdge = (diagramEdge: DiagramEdge): Edge => {
     return {
         id: diagramEdge.id,
         source: diagramEdge.source,
@@ -21,21 +21,21 @@ export const mapToEdge = (diagramEdge: DiagramEdge): Edge => {
     };
 };
 
-export const mapToDiagramEdges = (diagramEdges: Edge[]): DiagramEdge[] => {
-    const reactFlowEdges: DiagramEdge[] = [];
-    if (diagramEdges) {
-        diagramEdges.forEach((diagramEdge: DiagramEdge) => {
-            reactFlowEdges.push(mapToDiagramEdge(diagramEdge));
+export const MapToDiagramEdges = (edges: Edge[]): DiagramEdge[] => {
+    const diagramEdges: DiagramEdge[] = [];
+    if (edges) {
+        edges.forEach((diagramEdge: DiagramEdge) => {
+            diagramEdges.push(MapToDiagramEdge(diagramEdge));
         });
     }
-    return reactFlowEdges;
+    return diagramEdges;
 };
 
-export const mapToDiagramEdge = (diagramEdge: Edge): DiagramEdge => {
+export const MapToDiagramEdge = (edge: Edge): DiagramEdge => {
     return {
-        id: diagramEdge.id,
-        source: diagramEdge.source,
-        target: diagramEdge.target,
+        id: edge.id,
+        source: edge.source,
+        target: edge.target,
         type: EdgeType.Relationship
     };
 };

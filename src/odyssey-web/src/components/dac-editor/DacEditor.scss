@@ -1,3 +1,4 @@
+@use '../../styles/common' as common;
 @use '../../styles/variables' as variables;
 
 .dac-editor {
@@ -21,46 +22,25 @@
     outline: none;
     min-height: 150px;
     padding: 5px;
-    overflow-y: auto; // Enables scrollbar when needed
-    flex-grow: 1; // Allows it to take up available space
 
     font-family: variables.$font-family-monospace;
     font-size: variables.$font-size-lg;
 
-    /* Custom Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-    // &::-webkit-scrollbar {
-    //     width: 8px; // Width of the scrollbar
-    // }
-
-    &::-webkit-scrollbar-track {
-        background: variables.$gray-100; // Background color of the track
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: variables.$gray-600; // Color of the scrollbar thumb
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: variables.$black; // Darker color when hovered
-    }
-
-    /* Custom Scrollbar for Firefox */
-    scrollbar-width: thin; // "thin", "auto", or "none"
-    scrollbar-color: variables.$gray-600 variables.$gray-100; // thumb color & track color
+    @include common.odyssey-sidebar-grow;
 }
 
 .token.property {
-    color: black;
+    color: variables.$black;
 }
 
 .token.string {
-    color: purple;
+    color: variables.$purple;
 }
 
 .token.number {
-    color: green;
+    color: variables.$primary;
 }
 
 .token.boolean {
-    color: darkorange;
+    color: variables.$orange;
 }

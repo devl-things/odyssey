@@ -12,7 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onToggleLeft, onToggleRight }) => {
     const handleOnSearch = (query: string) => {
-        logInDev(query);
+        logInDev("[Header] handleOnSearch", query);
     }
     return (
         <nav className="header">

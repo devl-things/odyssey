@@ -4,18 +4,16 @@ export interface Translation {
     toolbarClearTooltip: string,
     toolbarFormatTooltip: string;
     toolbarLoadTooltip: string;
+    toolbarDownloadJsonTooltip: string,
     toolbarDownloadPdfTooltip: string;
     toolbarDownloadSvgTooltip: string;
+    toolbarSaveTooltip: string;
     toolbarCloseTooltip: string;
-    // Add other translation keys here as needed, e.g.,:
-    // greeting: string;
 }
 
 export interface Translations {
     en: Translation;
     hr: Translation;
-    // You can add more languages here, e.g.,:
-    // es: Translation;
 }
 
 export const DefaultTranslations: Translations = {
@@ -25,8 +23,10 @@ export const DefaultTranslations: Translations = {
         toolbarClearTooltip: "Clear json",
         toolbarFormatTooltip: "Format json",
         toolbarLoadTooltip: "Load diagram",
+        toolbarDownloadJsonTooltip: "Download in Json",
         toolbarDownloadPdfTooltip: "Download in PDF",
         toolbarDownloadSvgTooltip: "Download in Svg",
+        toolbarSaveTooltip: "Save",
         toolbarCloseTooltip: "Close sidebar"
     },
     hr: {
@@ -35,8 +35,10 @@ export const DefaultTranslations: Translations = {
         toolbarClearTooltip: "Počisti",
         toolbarFormatTooltip: "Formatiraj",
         toolbarLoadTooltip: "Učitaj diagram",
+        toolbarDownloadJsonTooltip: "Skini Json",
         toolbarDownloadPdfTooltip: "Skini PDF",
         toolbarDownloadSvgTooltip: "Skini Svg",
+        toolbarSaveTooltip: "Spremi",
         toolbarCloseTooltip: "Zatvori"
     },
     // Add other languages as needed

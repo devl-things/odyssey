@@ -1,3 +1,4 @@
+@use '../../styles/common' as common;
 @use '../../styles/variables' as variables;
 
 $search-bar-color: variables.$gray-600;
@@ -21,11 +22,9 @@ $search-bar-margin-x: 20px;
     }
 
     input {
+        @include common.odyssey-font($search-bar-color);
         border-top-left-radius: $search-bar-corners-radius;
         border-bottom-left-radius: $search-bar-corners-radius;
-        font-size: .825rem;
-        font-weight: 400;
-        color: $search-bar-color;
     }
 
     input::placeholder {

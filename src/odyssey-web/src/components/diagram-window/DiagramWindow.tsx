@@ -6,81 +6,72 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import DiagramModel from '../../data/odyssey-protocol/DiagramModel';
-import { mapToNodes, mapToDiagramNodes } from '../../data/mappers/nodeMapper';
-import { mapToEdges } from '../../data/mappers/edgeMapper';
+import { MapToNodes, MapToDiagramNodes, MapToDiagramNode } from '../../data/mappers/NodeMapper';
+import { MapToEdges, MapToDiagramEdges, MapToDiagramEdge } from '../../data/mappers/EdgeMapper';
 import { logInDev } from '../../util/logging';
 import Toolbar from "../toolbar/Toolbar";
 import './DiagramWindow.scss';
-import OdysseyData from '../../data/mappers/OdysseyData';
-import { Layer, NodeType } from '../../data/odyssey-protocol/Enums';
-
-const initialNodes: Node<OdysseyData>[] = [
-    { id: '1', position: { x: 0, y: 0 }, data: { label: 'uno', name: 'uno', type: NodeType.Component, layer: Layer.Context } },
-    { id: '2', position: { x: 0, y: 100 }, data: { label: 'due', name: 'due', type: NodeType.Component, layer: Layer.Context } },
-    { id: '3', position: { x: 200, y: 100 }, data: { label: 'tre', name: 'tre', type: NodeType.Component, layer: Layer.Context } },
-];
-const initialNodesII: Node<OdysseyData>[] = [
-    { id: "dog", type: "default", position: { x: 0, y: 0 }, data: { label: "Dog", name: "Dog", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/dog" } },
-    { id: "vixen", type: "default", position: { x: 200, y: 100 }, data: { label: "Vixen", name: "Vixen", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/vixen" } },
-    { id: 'bee', type: "default", position: { x: 400, y: 200 }, data: { label: "Bee", name: "Bee", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/bee" }, style: { width: 200, height: 200 } },
-    { id: 'bee_ham', type: "default", position: { x: 500, y: 200 }, parentId: 'bee', data: { label: "Bee base", name: "Bee base", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/ham" }, style: { width: 200, height: 200 } },
-    { id: "wasp", type: "default", position: { x: 600, y: 300 }, data: { label: "Wasp", name: "Wasp", type: NodeType.Component, layer: Layer.Context, "icon": "https://robohash.org/wasp" } },
-    { id: "wasp_base", type: "default", position: { x: 600, y: 300 }, parentId: 'wasp', data: { label: "Wasp", name: "Wasp", type: NodeType.Component, layer: Layer.Context, "icon": "https://robohash.org/base" } }
-];
-
-const initialEdges: Edge[] = [{ id: 'e1-2', source: '1', target: '2' }];
-const initialEdgesII: Edge[] = [{ id: "1", source: 'bee', target: "dog" },
-{ id: "2", source: "bee", target: "vixen" },
-{ id: "3", source: "vixen", target: "dog" },
-{ id: "4", source: "bee", target: "wasp" },
-{ id: "6", source: "bee-ham", target: "wasp_base" },
-{ id: "5", source: "wasp", target: "vixen" }];
+import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
+import DiagramNode from '../../data/odyssey-protocol/DiagramNode';
+import DiagramEdge from '../../data/odyssey-protocol/DiagramEdge';
 
 interface DiagramWindowProps {
     dac?: DiagramModel,
-    onEditDiagramInEditor: (diagram: DiagramModel) => void;
+    onEditDiagram: (diagram: DiagramModel) => void;
+    onNodeSelect: (node: DiagramNode) => void;
+    onEdgeSelect: (edge: DiagramEdge) => void;
 }
 
-const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagramInEditor }) => {
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesII);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesII);
+const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram, onNodeSelect, onEdgeSelect }) => {
+    const [nodes, setNodes, onNodesChange] = useNodesState<Node<OdysseyData>>([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     useEffect(() => {
-        logInDev("[DiagramWindow] Diagram from editor " + JSON.stringify(dac))
+        logInDev("[DiagramWindow] Diagram from editor ", dac);
         if (dac) {
-            setNodes(mapToNodes(dac.nodes));
-            setEdges(mapToEdges(dac.edges));
+            setNodes(MapToNodes(dac.nodes));
+            setEdges(MapToEdges(dac.edges));
         }
     }, [dac]);
 
 
-    const handleExportToEditor = () => {
-        // Ensure that DiagramModel is initialized properly
+    const handleExportToEditor = useCallback(() => {
         let diagram: DiagramModel = {
-            nodes: mapToDiagramNodes(nodes), // Ensure this function returns the correct type
-            edges: [] // Provide a default empty array if edges are not needed
+            nodes: MapToDiagramNodes(nodes),
+            edges: MapToDiagramEdges(edges)
         };
 
-        onEditDiagramInEditor(diagram);
+        onEditDiagram(diagram);
+    }, [nodes, edges]);
+
+    const handleOnNodeClick = (event: React.MouseEvent, node: Node<OdysseyData>) => {
+        if (node && onNodeSelect) {
+            onNodeSelect(MapToDiagramNode(node));
+        }
     };
 
+    const handleOnEdgeClick = (event: React.MouseEvent, edge: Edge) => {
+        if (edge && onEdgeSelect) {
+            onEdgeSelect(MapToDiagramEdge(edge));
+        }
+    };
 
-    const handleDownloadPdf = () => {
+    const handleOnDownloadPdf = useCallback(() => {
+        //TODO #18
         logInDev("Export in PDF");
-    };
+    }, []);
 
-    const handleDownloadSvg = () => {
+    const handleOnDownloadSvg = useCallback(() => {
+        //TODO #18
         logInDev("Export in SVG");
-    };
+    }, []);
 
-    const onConnect = useCallback(
-        (params) => setEdges((eds) => addEdge(params, eds)),
-        [setEdges],
-    );
+    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)),
+        [setEdges]);
 
     return (
         <div className="diagram-window">
-            <Toolbar onFormat={handleExportToEditor} onDownloadPdf={handleDownloadPdf} onDownloadSvg={handleDownloadSvg} />
+            <Toolbar onFormat={handleExportToEditor} onDownloadPdf={handleOnDownloadPdf} onDownloadSvg={handleOnDownloadSvg} />
             <div className="diagram" >
                 <ReactFlow
                     nodes={nodes}
@@ -88,6 +79,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                     onNodesChange={onNodesChange}
                     onEdgesChange={onEdgesChange}
                     onConnect={onConnect}
+                    onNodeClick={handleOnNodeClick}
+                    onEdgeClick={handleOnEdgeClick}
                 >
                     <MiniMap />
                     {/* <Controls /> */}

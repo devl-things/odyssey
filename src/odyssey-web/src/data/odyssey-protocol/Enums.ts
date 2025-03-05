@@ -14,6 +14,12 @@ export enum Layer {
     Component = "component",
     Code = "code"
 }
+export enum ApiMethod {
+    Get = "GET",
+    Post = "POST",
+    Put = "PUT",
+    Delete = "DELETE"
+}
 
 export enum ApiDirection {
     Request = "request",

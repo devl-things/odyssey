@@ -1,0 +1,40 @@
+@use '../../styles/common' as common;
+@use '../../styles/variables' as variables;
+
+$properties-color: variables.$gray-600;
+$properties-corners-radius: variables.$border-radius;
+
+.properties {
+    @include common.odyssey-flex-column;
+}
+
+.node-properties {
+    @include common.odyssey-flex-column;
+    @include common.odyssey-sidebar-grow;
+
+    p {
+        @include common.odyssey-font($properties-color);
+        margin: 2px 7px;
+
+        &.modified {
+            @include common.odyssey-font-weight(variables.$font-weight-bold);
+        }
+    }
+
+    input {
+        @include common.odyssey-font($properties-color);
+        border: 1px solid $properties-color;
+        border-radius: $properties-corners-radius;
+        margin: 2px 5px;
+    }
+
+    select {
+        @include common.odyssey-font($properties-color);
+        border: 1px solid $properties-color;
+        border-radius: $properties-corners-radius;
+        margin: 2px 5px;
+        padding: 1px 2px; // Adding padding for better appearance
+        //appearance: none; // Remove arrow at the end
+        background-color: white; // Set a background color
+    }
+}

@@ -1,6 +1,6 @@
-export const logInDev = (message: string): void => {
+export const logInDev = (...args: any): void => {
     if (import.meta.env.DEV) {
-        console.log(message);
+        console.log(args);
     }
 };
 
