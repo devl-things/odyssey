@@ -6,7 +6,6 @@ import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
 import './Properties.scss';
-import { logInDev } from "../../util/logging";
 
 interface NodePropertiesProps {
     node: DiagramNode;
