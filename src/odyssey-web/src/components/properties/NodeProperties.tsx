@@ -6,6 +6,7 @@ import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
 import './Properties.scss';
+import { logInDev } from "../../util/logging";
 
 interface NodePropertiesProps {
     node: DiagramNode;
@@ -17,9 +18,9 @@ const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSa
     const [diagramNode, dispatch] = useReducer(DiagramNodeReducer, null);
     const diagramNodeInitialValue = useRef(node);
 
-    //BUG on save labels stay bolded
     useEffect(() => {
         if (diagramNode) {
+            diagramNodeInitialValue.current = diagramNode;
             onSave(diagramNode);
         }
     }, [triggerSave]);
