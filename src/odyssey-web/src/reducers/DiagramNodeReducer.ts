@@ -9,7 +9,7 @@ type DiagramNodeAction =
     | { type: DiagramNodeActionTypes.SetNode; payload: DiagramNode }
     | { type: DiagramNodeActionTypes.SetField; field: keyof DiagramNode; value: any };
 
-const DiagramNodeReducer = (state: DiagramNode | null, action: DiagramNodeAction): DiagramNode | null => {
+const diagramNodeReducer = (state: DiagramNode | null, action: DiagramNodeAction): DiagramNode | null => {
     switch (action.type) {
         case DiagramNodeActionTypes.SetNode:
             return action.payload;
@@ -20,4 +20,4 @@ const DiagramNodeReducer = (state: DiagramNode | null, action: DiagramNodeAction
     }
 };
 
-export default DiagramNodeReducer;
+export default diagramNodeReducer;

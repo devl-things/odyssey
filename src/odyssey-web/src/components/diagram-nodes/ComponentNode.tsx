@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Handle, Position } from '@xyflow/react';
 import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
 import './DiagramNodes.scss';
-import { logInDev } from '../../util/logging';
-import { AiOutlineApi } from "react-icons/ai";
+import { LuComponent } from "react-icons/lu";
 
-interface ApiNodeProps {
+interface ComponentNodeProps {
     data?: OdysseyData;
 }
 
-const ApiNode: React.FC<ApiNodeProps> = ({ data }) => {
-    //const [minHeight, setMinHeight] = useState('auto');
-    logInDev(data);
-    // useEffect(() => {
-    //     setMinHeight(data?.style?.height ? `${data.style.height}px` : 'auto');
-    // }, [data]);
-
+const ComponentNode: React.FC<ComponentNodeProps> = ({ data }) => {
     const minHeight = data?.style?.height ? `${data.style.height}px` : 'auto';
     return (
         <div className="api-node" style={{ minHeight }}>
             <div className="node-header">
                 <div className="api-node-title">
-                    {data.method && <div><span className="api-node-title-method">{data.method}</span></div>}
-                    <div className="api-node-title-url" title={data.url}>{data.url}</div>
+                    <div className="api-node-title-url" title={data.name} >{data.name}</div>
+                    <div>
+                        <img src="https://robohash.org/dog" alt={data.name} width="50" height="50" />
+                    </div>
+
+                    {/* <div><span className="api-node-title-method">{data.method}</span></div> */}
                 </div>
                 <div className="node-icon">
-                    <AiOutlineApi size={24} />
+                    <LuComponent size={24} />
                 </div>
             </div>
             <Handle
@@ -43,4 +40,4 @@ const ApiNode: React.FC<ApiNodeProps> = ({ data }) => {
     );
 };
 
-export default ApiNode;
+export default ComponentNode;

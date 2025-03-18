@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import DiagramEdge from "../../data/odyssey-protocol/DiagramEdge";
 import { EdgeType, ProcessingType, Protocol } from "../../data/odyssey-protocol/Enums";
-import DiagramEdgeReducer, { DiagramEdgeActionTypes } from "../../reducers/DiagramEdgeReducer";
+import diagramEdgeReducer, { DiagramEdgeActionTypes } from "../../reducers/DiagramEdgeReducer";
 import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
@@ -14,7 +14,7 @@ interface EdgePropertiesProps {
 }
 
 const EdgeProperties: React.FC<EdgePropertiesProps> = ({ edge, triggerSave, onSave }) => {
-    const [diagramEdge, dispatch] = useReducer(DiagramEdgeReducer, null);
+    const [diagramEdge, dispatch] = useReducer(diagramEdgeReducer, null);
     const diagramEdgeInitialValue = useRef(edge);
 
     useEffect(() => {

@@ -15,7 +15,7 @@ type DiagramAction =
     | { type: DiagramModelActionTypes.MODIFY_EDGE; payload: DiagramEdge };
 
 // Reducer function handling diagram state updates
-const DiagramModelReducer = (state: DiagramModel, action: DiagramAction): DiagramModel => {
+const diagramModelReducer = (state: DiagramModel, action: DiagramAction): DiagramModel => {
     switch (action.type) {
         case DiagramModelActionTypes.SET_DIAGRAM:
             return action.payload;
@@ -38,4 +38,4 @@ const DiagramModelReducer = (state: DiagramModel, action: DiagramAction): Diagra
     }
 };
 
-export default DiagramModelReducer;
+export default diagramModelReducer;

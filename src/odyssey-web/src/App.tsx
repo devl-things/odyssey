@@ -9,7 +9,7 @@ import DiagramModel from './data/odyssey-protocol/DiagramModel';
 import DiagramNode from './data/odyssey-protocol/DiagramNode';
 import DiagramEdge from './data/odyssey-protocol/DiagramEdge';
 import { NodeType, Layer } from './data/odyssey-protocol/Enums';
-import DiagramModelReducer, { DiagramModelActionTypes } from './reducers/DiagramModelReducer';
+import diagramModelReducer, { DiagramModelActionTypes } from './reducers/DiagramModelReducer';
 import { Node, Edge } from '@xyflow/react';
 import OdysseyData from './data/odyssey-protocol/OdysseyData';
 import { logInDev } from './util/logging';
@@ -19,18 +19,20 @@ import { MapToDiagramEdges } from './data/mappers/EdgeMapper';
 const initialNodesII: Node<OdysseyData>[] = [
   { id: "dog", type: "default", position: { x: 0, y: 0 }, data: { label: "Dog", name: "Dog", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/dog" } },
   { id: "vixen", type: "default", position: { x: 200, y: 100 }, data: { label: "Vixen", name: "Vixen", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/vixen" } },
-  { id: 'bee', type: "default", position: { x: 400, y: 200 }, data: { label: "Bee", name: "Bee", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/bee" }, style: { width: 200, height: 200 } },
-  { id: 'bee_ham', type: "default", position: { x: 500, y: 200 }, parentId: 'bee', data: { label: "Bee base", name: "Bee base", type: NodeType.Component, layer: Layer.Context, icon: "https://robohash.org/ham" }, style: { width: 200, height: 200 } },
+  { id: 'bee', type: "default", position: { x: 400, y: 200 }, data: { label: "Bee", name: "Bee", type: NodeType.API, layer: Layer.Context, icon: "https://robohash.org/bee" }, style: { width: 200, height: 200 } },
+  { id: 'bee_ham', type: "default", position: { x: 500, y: 200 }, parentId: 'bee', data: { label: "Bee base", name: "Bee base", type: NodeType.APIFacet, layer: Layer.Context, icon: "https://robohash.org/ham" }, style: { width: 200, height: 200 } },
   { id: "wasp", type: "default", position: { x: 600, y: 300 }, data: { label: "Wasp", name: "Wasp", type: NodeType.Component, layer: Layer.Context, "icon": "https://robohash.org/wasp" } },
-  { id: "wasp_base", type: "default", position: { x: 600, y: 300 }, parentId: 'wasp', data: { label: "Wasp", name: "Wasp", type: NodeType.Component, layer: Layer.Context, "icon": "https://robohash.org/base" } }
+  // { id: "wasp_base", type: "default", position: { x: 600, y: 300 }, parentId: 'wasp', data: { label: "Wasp", name: "Wasp", type: NodeType.Component, layer: Layer.Context, "icon": "https://robohash.org/base" } }
 ];
 
-const initialEdgesII: Edge[] = [{ id: "1", source: 'bee', target: "dog" },
-{ id: "2", source: "bee", target: "vixen" },
-{ id: "3", source: "vixen", target: "dog" },
-{ id: "4", source: "bee", target: "wasp" },
-{ id: "6", source: "bee-ham", target: "wasp_base" },
-{ id: "5", source: "wasp", target: "vixen" }];
+const initialEdgesII: Edge[] = [
+  //{ id: "1", source: 'bee', target: "dog" },
+  // { id: "2", source: "bee", target: "vixen" },
+  //{ id: "3", source: "vixen", target: "dog" },
+  // { id: "4", source: "bee", target: "wasp" },
+  // { id: "6", source: "bee-ham", target: "wasp_base" },
+  // { id: "5", source: "wasp", target: "vixen" }
+];
 
 const initialDiagram: DiagramModel = {
   nodes: MapToDiagramNodes(initialNodesII),
@@ -43,8 +45,8 @@ const App: React.FC = () => {
   const [nodeProperties, setNodeProperties] = useState<DiagramNode | null>(null);
   const [edgeProperties, setEdgeProperties] = useState<DiagramEdge | null>(null);
 
-  const [dac, dispatchDac] = useReducer(DiagramModelReducer, initialDiagram);
-  const [dacInEditor, dispatchDacInEditor] = useReducer(DiagramModelReducer, initialDiagram);
+  const [dac, dispatchDac] = useReducer(diagramModelReducer, initialDiagram);
+  const [dacInEditor, dispatchDacInEditor] = useReducer(diagramModelReducer, initialDiagram);
 
   const handleToggleLeft = useCallback(() => {
     setLeftSidebarVisible(prevState => !prevState);

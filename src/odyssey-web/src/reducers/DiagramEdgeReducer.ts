@@ -8,7 +8,7 @@ type DiagramEdgeAction =
     | { type: DiagramEdgeActionTypes.SetEdge; payload: DiagramEdge }
     | { type: DiagramEdgeActionTypes.SetField; field: keyof DiagramEdge; value: any };
 
-const DiagramEdgeReducer = (state: DiagramEdge | null, action: DiagramEdgeAction): DiagramEdge | null => {
+const diagramEdgeReducer = (state: DiagramEdge | null, action: DiagramEdgeAction): DiagramEdge | null => {
     switch (action.type) {
         case DiagramEdgeActionTypes.SetEdge:
             return action.payload;
@@ -19,4 +19,4 @@ const DiagramEdgeReducer = (state: DiagramEdge | null, action: DiagramEdgeAction
     }
 };
 
-export default DiagramEdgeReducer;
+export default diagramEdgeReducer;

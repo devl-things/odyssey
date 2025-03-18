@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import {
-    ReactFlow, MiniMap, Node, Edge, useNodesState, useEdgesState, addEdge
+    ReactFlow, MiniMap, Node, Edge, useNodesState, useEdgesState, addEdge,
+    Background
     // Controls,
     // Background,
 } from '@xyflow/react';
@@ -15,6 +16,7 @@ import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
 import DiagramNode from '../../data/odyssey-protocol/DiagramNode';
 import DiagramEdge from '../../data/odyssey-protocol/DiagramEdge';
 import OdysseyNodeTypes from '../diagram-nodes/OdysseyNodeTypes';
+import { ApiMethod } from '../../data/odyssey-protocol/Enums';
 
 interface DiagramWindowProps {
     dac?: DiagramModel,
@@ -24,7 +26,7 @@ interface DiagramWindowProps {
 }
 
 const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram, onNodeSelect, onEdgeSelect }) => {
-    const [nodes, setNodes, onNodesChange] = useNodesState<Node<OdysseyData>>([]);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     const nodeTypes = useMemo(() => (OdysseyNodeTypes), []);
@@ -33,10 +35,138 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
 
     useEffect(() => {
         logInDev("[DiagramWindow] Diagram from editor ", dac);
-        if (dac) {
-            setNodes(MapToNodes(dac.nodes));
-            setEdges(MapToEdges(dac.edges));
-        }
+        // if (dac) {
+        //     setNodes(MapToNodes(dac.nodes));
+        //     setEdges(MapToEdges(dac.edges));
+        // }
+
+        //width is 8.36 per letter + 13 + 5 //+ max 65
+        setNodes([
+            {
+                id: "20",
+                type: "api",
+                data: {
+                    method: ApiMethod.Get,
+                    url: '/withoutSpecifics',
+                    style: {
+                        //width: 30 * 8.5 + 32 + 30,
+                        //height: 280
+                    }
+                },
+                position: { x: 400, y: 50 },
+                //style: { width: 30 * 8.5 + 32 + 30, height: 280 },
+            },
+            {
+                id: "21",
+                type: "component",
+                data: {
+                    //method: ApiMethod.Get,
+                    name: 'DOG',
+                    //url: '/withoutSpecifics',
+                    style: {
+                        //width: 30 * 8.5 + 32 + 30,
+                        //height: 280
+                    }
+                },
+                position: { x: 600, y: 50 },
+                //style: { width: 30 * 8.5 + 32 + 30, height: 280 },
+            },
+            {
+                id: "8",
+                type: "api",
+                data: {
+                    method: ApiMethod.Get,
+                    url: '/withSpecificswithSpecificswithSpecificswithSpecificswithSpecifics',
+                    style: {
+                        width: 30 * 8.5 + 32 + 30,
+                        height: 280
+                    }
+                },
+                position: { x: 10, y: 50 },
+                style: { width: 30 * 8.5 + 32 + 30, height: 280 },
+            },
+            {
+                id: "1",
+                type: "apiFacet",
+                data: { direction: 'request' },
+                parentId: "8",
+                position: { x: 15, y: 60 },
+                style: { width: 30 * 8.5 + 32, height: 110 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "2",
+                type: "field",
+                data: { name: "FieldName", type: "datetime", primaryKey: true },
+                parentId: "1",
+                position: { x: 3, y: 23 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "3",
+                type: "field",
+                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", primaryKey: false },
+                parentId: "1",
+                position: { x: 3, y: 50 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "4",
+                type: "field",
+                data: { name: "FieldNameF", type: "int", primaryKey: false },
+                parentId: "1",
+                position: { x: 3, y: 77 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "10",
+                type: "apiFacet",
+                data: { direction: 'response' },
+                parentId: "8",
+                position: { x: 15, y: 165 },
+                style: { width: 30 * 8.5 + 32, height: 110 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "11",
+                type: "field",
+                data: { name: "FieldName", type: "datetime", primaryKey: true },
+                parentId: "10",
+                position: { x: 3, y: 23 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "12",
+                type: "field",
+                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", primaryKey: false },
+                parentId: "10",
+                position: { x: 3, y: 50 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "13",
+                type: "field",
+                data: { name: "FieldNameF", type: "int", primaryKey: false },
+                parentId: "10",
+                position: { x: 3, y: 77 },
+                style: { width: 30 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true
+            },
+        ]);
+
     }, [dac]);
 
 

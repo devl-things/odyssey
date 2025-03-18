@@ -1,0 +1,94 @@
+@use '../../styles/variables' as variables;
+
+
+$node-background-color: variables.$white;
+
+.node-header {
+    display: flex;
+    padding: 8px;
+}
+
+.node-icon {
+    margin-left: auto;
+    padding-left: 5px;
+}
+
+.api-node {
+    border: 1px solid variables.$black;
+    padding: 5px;
+    border-radius: 5px;
+    background: $node-background-color;
+}
+
+.api-node-title {
+    display: flex;
+    flex-direction: column;
+    max-width: 260px;
+}
+
+.api-node-title-method {
+    background-color: variables.$purple;
+    color: variables.$white;
+    font-size: variables.$font-size-sm;
+    font-weight: variables.$font-weight-bold;
+    margin: 2px 3px;
+    margin-left: 5px;
+    padding: 1px 4px;
+    border-radius: variables.$border-radius-xxl;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.api-node-title-url {
+    display: block;
+    font-size: variables.$font-size-base;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.api-facet-node {
+    padding-left: 5px;
+    color: variables.$gray-600;
+}
+
+.field-node {
+    min-height: 1rem;
+    border: 1px solid variables.$black;
+    border-radius: variables.$border-radius;
+    margin: 1px 0px;
+    max-width: 300px;
+    flex-grow: 1;
+}
+
+.field-node-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden;
+    margin-right: 5px;
+}
+
+.field-node-content-pk {
+    font-size: 10px;
+    font-weight: bold;
+    color: variables.$red;
+    vertical-align: super;
+    margin-left: 5px;
+    margin-right: 4px;
+
+    &.no-pk {
+        color: $node-background-color;
+    }
+}
+
+.field-node-content-name {
+    font-family: variables.$font-family-monospace;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: variables.$font-size-lg;
+}
