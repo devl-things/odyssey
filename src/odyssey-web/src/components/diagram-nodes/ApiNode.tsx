@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Handle, Position } from '@xyflow/react';
-import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
+import { OdysseyNodeProps } from '../../data/odyssey-protocol/OdysseyData';
 import './DiagramNodes.scss';
-import { logInDev } from '../../util/logging';
 import { AiOutlineApi } from "react-icons/ai";
 
-interface ApiNodeProps {
-    data?: OdysseyData;
-}
 
-const ApiNode: React.FC<ApiNodeProps> = ({ data }) => {
-    //const [minHeight, setMinHeight] = useState('auto');
-    logInDev(data);
-    // useEffect(() => {
-    //     setMinHeight(data?.style?.height ? `${data.style.height}px` : 'auto');
-    // }, [data]);
-
+const ApiNode: React.FC<OdysseyNodeProps> = ({ data }) => {
     const minHeight = data?.style?.height ? `${data.style.height}px` : 'auto';
     return (
-        <div className="api-node" style={{ minHeight }}>
+        <div className="node-frame" style={{ minHeight }}>
             <div className="node-header">
-                <div className="api-node-title">
+                <div className="node-header-title">
                     {data.method && <div><span className="api-node-title-method">{data.method}</span></div>}
                     <div className="api-node-title-url" title={data.url}>{data.url}</div>
                 </div>
-                <div className="node-icon">
+                <div className="node-header-icon">
                     <AiOutlineApi size={24} />
                 </div>
             </div>

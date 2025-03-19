@@ -60,9 +60,9 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 id: "21",
                 type: "component",
                 data: {
-                    //method: ApiMethod.Get,
-                    name: 'DOG',
-                    //url: '/withoutSpecifics',
+                    name: 'DOGEXTRALARGE NAME so to see how it is',
+                    icon: 'https://robohash.org/dog?size=400x200',
+                    //icon: 'nevaljala',
                     style: {
                         //width: 30 * 8.5 + 32 + 30,
                         //height: 280
@@ -91,9 +91,10 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 data: { direction: 'request' },
                 parentId: "8",
                 position: { x: 15, y: 60 },
-                style: { width: 30 * 8.5 + 32, height: 110 },
+                style: { width: 30 * 8.5 + 32, height: 23 + 27 + 27 + 27 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "2",
@@ -103,7 +104,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 23 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "3",
@@ -113,7 +115,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 50 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "4",
@@ -123,17 +126,19 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 77 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "10",
                 type: "apiFacet",
                 data: { direction: 'response' },
                 parentId: "8",
-                position: { x: 15, y: 165 },
-                style: { width: 30 * 8.5 + 32, height: 110 },
+                position: { x: 15, y: 60 + 23 + 27 + 27 + 27 },
+                style: { width: 30 * 8.5 + 32, height: 23 + 27 + 27 + 27 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "11",
@@ -143,7 +148,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 23 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "12",
@@ -153,7 +159,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 50 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
             {
                 id: "13",
@@ -163,7 +170,8 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                 position: { x: 3, y: 77 },
                 style: { width: 30 * 8.5 + 28 },
                 extent: 'parent',
-                expandParent: true
+                expandParent: true,
+                draggable: false
             },
         ]);
 

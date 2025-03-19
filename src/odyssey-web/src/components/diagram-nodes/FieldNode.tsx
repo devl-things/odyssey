@@ -13,17 +13,17 @@ const FieldNode: React.FC<FieldNodeProps> = ({ data }) => {
         <div className="field-node">
             {data &&
                 <>
+                    <div className="field-node-content">
+                        <div className={`field-node-pk ${data.primaryKey ? '' : 'no-pk'}`}>PK</div>
+                        <div className="field-node-name" title={data.name}>{data.name}</div>
+                        {/* <span className="data-type-node-attribute">{data.type}</span> */}
+                    </div>
                     <Handle
                         type="target"
                         position={Position.Left}
                         id={createHandleTargetId(data.name)}
                         isConnectable={true}
                     />
-                    <div className="field-node-content">
-                        <div className={`field-node-content-pk ${data.primaryKey ? '' : 'no-pk'}`}>PK</div>
-                        <div className="field-node-content-name" title={data.name}>{data.name}</div>
-                        {/* <span className="data-type-node-attribute">{data.type}</span> */}
-                    </div>
                     <Handle
                         type="source"
                         position={Position.Right}

@@ -1,13 +1,9 @@
 import React from 'react';
-import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
+import { OdysseyNodeProps } from '../../data/odyssey-protocol/OdysseyData';
 import { toUpperCaseSafe } from '../../util/StringManipulations';
 import './DiagramNodes.scss';
 
-interface ApiFacetNodeProps {
-    data?: OdysseyData;
-}
-
-const ApiFacetNode: React.FC<ApiFacetNodeProps> = ({ data }) => {
+const ApiFacetNode: React.FC<OdysseyNodeProps> = ({ data }) => {
     return (
         <div className="api-facet-node">
             {toUpperCaseSafe(data.direction)}

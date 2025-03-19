@@ -1,30 +1,23 @@
 import React from 'react';
 import { Handle, Position } from '@xyflow/react';
-import OdysseyData from '../../data/odyssey-protocol/OdysseyData';
+import { OdysseyNodeProps } from '../../data/odyssey-protocol/OdysseyData';
 import './DiagramNodes.scss';
 import { LuComponent } from "react-icons/lu";
+import NodeIcon from './NodeIcon';
 
-interface ComponentNodeProps {
-    data?: OdysseyData;
-}
-
-const ComponentNode: React.FC<ComponentNodeProps> = ({ data }) => {
+const ComponentNode: React.FC<OdysseyNodeProps> = ({ data }) => {
     const minHeight = data?.style?.height ? `${data.style.height}px` : 'auto';
     return (
-        <div className="api-node" style={{ minHeight }}>
+        <div className="node-frame" style={{ minHeight }}>
             <div className="node-header">
-                <div className="api-node-title">
-                    <div className="api-node-title-url" title={data.name} >{data.name}</div>
-                    <div>
-                        <img src="https://robohash.org/dog" alt={data.name} width="50" height="50" />
-                    </div>
-
-                    {/* <div><span className="api-node-title-method">{data.method}</span></div> */}
+                <div className="node-header-title">
+                    <div className="component-node-name" title={data.name} >{data.name}</div>
                 </div>
-                <div className="node-icon">
+                <div className="node-header-icon">
                     <LuComponent size={24} />
                 </div>
             </div>
+            <NodeIcon data={data} />
             <Handle
                 type="target"
                 position={Position.Left}
