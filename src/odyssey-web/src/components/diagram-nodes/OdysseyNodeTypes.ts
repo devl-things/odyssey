@@ -4,6 +4,8 @@ import FieldNode from "./FieldNode";
 import ComponentNode from "./ComponentNode";
 import DatabaseNode from "./DatabaseNode";
 import TableNode from "./TableNode";
+import CacheNode from "./CacheNode";
+import BlobNode from "./BlobNode";
 
 const OdysseyNodeTypes = {
     api: ApiNode,
@@ -11,7 +13,9 @@ const OdysseyNodeTypes = {
     field: FieldNode,
     component: ComponentNode,
     db: DatabaseNode,
-    table: TableNode
+    table: TableNode,
+    cache: CacheNode,
+    blob: BlobNode
 };
 
 export default OdysseyNodeTypes;

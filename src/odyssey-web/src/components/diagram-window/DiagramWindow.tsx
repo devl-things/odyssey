@@ -43,6 +43,40 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
         //width is 8.36 per letter + 13 + 5 //+ max 65
         setNodes([
             {
+                id: "50",
+                type: "blob",
+                data: {
+                    name: 'Blob',
+                    url: '10.123.123.123',
+                    style: {
+                        //width: 30 * 8.5 + 32 + 30,
+                        //height: 60 + 30 + 4 + 27 + 27 + 14
+                    }
+                },
+                position: { x: 10, y: 5 },
+                style: {
+                    //width: 30 * 8.5 + 28 + 20 + 30,
+                    //height: 60 + 30 + 4 + 27 + 27 + 14
+                },
+            },
+            {
+                id: "40",
+                type: "cache",
+                data: {
+                    name: 'Memory',
+                    url: '10.123.123.123',
+                    style: {
+                        //width: 30 * 8.5 + 32 + 30,
+                        //height: 60 + 30 + 4 + 27 + 27 + 14
+                    }
+                },
+                position: { x: 10, y: 70 },
+                style: {
+                    width: 30 * 8.5 + 28 + 20 + 30,
+                    //height: 60 + 30 + 4 + 27 + 27 + 14
+                },
+            },
+            {
                 id: "30",
                 type: "db",
                 data: {
@@ -50,11 +84,14 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                     url: '10.123.123.123',
                     style: {
                         //width: 30 * 8.5 + 32 + 30,
-                        height: 280
+                        height: 60 + 30 + 4 + 27 + 27 + 14
                     }
                 },
-                position: { x: 10, y: 10 },
-                style: { width: 30 * 8.5 + 28 + 20 + 30, height: 280 },
+                position: { x: 10, y: 200 },
+                style: {
+                    width: 30 * 8.5 + 28 + 20 + 30,
+                    height: 60 + 30 + 4 + 27 + 27 + 14
+                },
             },
             {
                 id: "31",
