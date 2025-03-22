@@ -9,6 +9,9 @@ export interface Translation {
     toolbarDownloadSvgTooltip: string;
     toolbarSaveTooltip: string;
     toolbarCloseTooltip: string;
+    primaryKey: string;
+    required: string;
+    optional: string;
 }
 
 export interface Translations {
@@ -27,7 +30,10 @@ export const DefaultTranslations: Translations = {
         toolbarDownloadPdfTooltip: "Download in PDF",
         toolbarDownloadSvgTooltip: "Download in Svg",
         toolbarSaveTooltip: "Save",
-        toolbarCloseTooltip: "Close sidebar"
+        toolbarCloseTooltip: "Close sidebar",
+        primaryKey: "Primary Key",
+        required: "Required",
+        optional: "Optional"
     },
     hr: {
         searchBarPlaceholder: "Traži",
@@ -39,7 +45,10 @@ export const DefaultTranslations: Translations = {
         toolbarDownloadPdfTooltip: "Skini PDF",
         toolbarDownloadSvgTooltip: "Skini Svg",
         toolbarSaveTooltip: "Spremi",
-        toolbarCloseTooltip: "Zatvori"
+        toolbarCloseTooltip: "Zatvori",
+        primaryKey: "Primarni Ključ",
+        required: "Obavezno",
+        optional: "Proizvoljno"
     },
     // Add other languages as needed
 };

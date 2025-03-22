@@ -43,6 +43,61 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
         //width is 8.36 per letter + 13 + 5 //+ max 65
         setNodes([
             {
+                id: "30",
+                type: "db",
+                data: {
+                    name: 'DbName',
+                    url: '10.123.123.123',
+                    style: {
+                        //width: 30 * 8.5 + 32 + 30,
+                        height: 280
+                    }
+                },
+                position: { x: 10, y: 10 },
+                style: { width: 30 * 8.5 + 28 + 20 + 30, height: 280 },
+            },
+            {
+                id: "31",
+                type: "table",
+                data: {
+                    name: 'Table2Table2Table2Table2Table2Table2Table2',
+                    style: {
+                        //width: 30 * 8.5 + 28 + 20,
+                        height: 30 + 4 + 27 + 27
+                    }
+                },
+                parentId: "30",
+                position: { x: 15, y: 60 },
+                style: {
+                    width: 30 * 8.5 + 28 + 20,
+                    height: 30 + 4 + 27 + 27
+                },
+                extent: 'parent',
+                expandParent: true
+            },
+            {
+                id: "32",
+                type: "field",
+                data: { name: "ColumnName", type: "datetime", isRequired: true },
+                parentId: "31",
+                position: { x: 10, y: 30 },
+                style: { width: 11 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true,
+                draggable: false
+            },
+            {
+                id: "33",
+                type: "field",
+                data: { name: "ColumnName2", type: "datetime", },
+                parentId: "31",
+                position: { x: 10, y: 30 + 27 },
+                style: { width: 11 * 8.5 + 28 },
+                extent: 'parent',
+                expandParent: true,
+                draggable: false
+            },
+            {
                 id: "20",
                 type: "api",
                 data: {
@@ -53,7 +108,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                         //height: 280
                     }
                 },
-                position: { x: 400, y: 50 },
+                position: { x: 400, y: 500 },
                 //style: { width: 30 * 8.5 + 32 + 30, height: 280 },
             },
             {
@@ -82,7 +137,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
                         height: 280
                     }
                 },
-                position: { x: 10, y: 50 },
+                position: { x: 10, y: 500 },
                 style: { width: 30 * 8.5 + 32 + 30, height: 280 },
             },
             {
@@ -99,7 +154,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "2",
                 type: "field",
-                data: { name: "FieldName", type: "datetime", primaryKey: true },
+                data: { name: "FieldName", type: "datetime", isPrimaryKey: true },
                 parentId: "1",
                 position: { x: 3, y: 23 },
                 style: { width: 30 * 8.5 + 28 },
@@ -110,7 +165,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "3",
                 type: "field",
-                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", primaryKey: false },
+                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", isPrimaryKey: false },
                 parentId: "1",
                 position: { x: 3, y: 50 },
                 style: { width: 30 * 8.5 + 28 },
@@ -121,7 +176,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "4",
                 type: "field",
-                data: { name: "FieldNameF", type: "int", primaryKey: false },
+                data: { name: "FieldNameF", type: "int", isPrimaryKey: false },
                 parentId: "1",
                 position: { x: 3, y: 77 },
                 style: { width: 30 * 8.5 + 28 },
@@ -143,7 +198,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "11",
                 type: "field",
-                data: { name: "FieldName", type: "datetime", primaryKey: true },
+                data: { name: "FieldName", type: "datetime", isPrimaryKey: true },
                 parentId: "10",
                 position: { x: 3, y: 23 },
                 style: { width: 30 * 8.5 + 28 },
@@ -154,7 +209,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "12",
                 type: "field",
-                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", primaryKey: false },
+                data: { name: "FieldNameFieldNameFieldNameFie", type: "int", isPrimaryKey: false },
                 parentId: "10",
                 position: { x: 3, y: 50 },
                 style: { width: 30 * 8.5 + 28 },
@@ -165,7 +220,7 @@ const DiagramWindow: React.FC<DiagramWindowProps> = ({ dac = null, onEditDiagram
             {
                 id: "13",
                 type: "field",
-                data: { name: "FieldNameF", type: "int", primaryKey: false },
+                data: { name: "FieldNameF", type: "int", isPrimaryKey: false },
                 parentId: "10",
                 position: { x: 3, y: 77 },
                 style: { width: 30 * 8.5 + 28 },
