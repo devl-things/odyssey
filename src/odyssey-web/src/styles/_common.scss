@@ -1,5 +1,12 @@
 @use './variables' as variables;
 
+@mixin odyssey-ellipsis {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @mixin odyssey-flex-column {
     display: flex;
     flex-direction: column;
@@ -7,10 +14,14 @@
     height: 100%;
 }
 
-@mixin odyssey-font($color, $font-weight: variables.$font-weight-normal, $font-size: variables.$font-size-base) {
-    @include odyssey-font-weight();
-    font-size: $font-size;
+@mixin odyssey-font($color, $font-size: variables.$font-size-base, $font-weight: variables.$font-weight-normal) {
+    @include odyssey-font-size($font-size, $font-weight);
     color: $color;
+}
+
+@mixin odyssey-font-size($font-size, $font-weight: variables.$font-weight-normal) {
+    @include odyssey-font-weight($font-weight);
+    font-size: $font-size;
 }
 
 @mixin odyssey-font-weight($font-weight: variables.$font-weight-normal) {

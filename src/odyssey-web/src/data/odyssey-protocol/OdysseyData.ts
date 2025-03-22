@@ -19,3 +19,7 @@ type OdysseyData = {
 }
 
 export default OdysseyData;
+
+export interface OdysseyNodeProps {
+    data?: OdysseyData;
+}

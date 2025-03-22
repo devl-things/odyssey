@@ -1,5 +1,6 @@
 import { Node } from '@xyflow/react';
 import DiagramNode from "../odyssey-protocol/DiagramNode";
+import { NodeType } from '../odyssey-protocol/Enums';
 import NodePosition from '../odyssey-protocol/NodePosition';
 import OdysseyData from '../odyssey-protocol/OdysseyData';
 import { logInDev } from '../../util/logging';
@@ -15,15 +16,14 @@ export const MapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
     const reactFlowNodes: Node<OdysseyData>[] = [];
     if (diagramNodes) {
         diagramNodes.forEach((diagramNode: DiagramNode, index: number) => {
-            let nodeType: ReactFlowNodeType = NODE_TYPE.DEFAULT;
-            const reactFlowNode = MapToNode(diagramNode, nodeType);
+            const reactFlowNode = MapToNode(diagramNode);
             if (diagramNode.parent) {
                 // if this is not set than parent will stretch to cover/include all children
                 reactFlowNode.extent = 'parent';
                 reactFlowNode.expandParent = true;
             }
             //TODO #15: this will have to be replaced with auto-arrange algorithm
-            reactFlowNode.position.x = index * 200;
+            reactFlowNode.position.x = index * 300;
             reactFlowNode.position.y = index * 100;
             reactFlowNodes.push(reactFlowNode);
         });
@@ -32,10 +32,15 @@ export const MapToNodes = (diagramNodes: DiagramNode[]): Node<OdysseyData>[] => 
     return reactFlowNodes;
 };
 
-export const MapToNode = (diagramNode: DiagramNode, nodeType: ReactFlowNodeType): Node<OdysseyData> => {
+const MapToNodeType = (diagramNodeType: string): string => {
+    return diagramNodeType === NodeType.API ? NodeType.API :
+        (diagramNodeType === NodeType.APIFacet ? "field" : NODE_TYPE.DEFAULT);
+};
+
+export const MapToNode = (diagramNode: DiagramNode): Node<OdysseyData> => {
     return {
         id: diagramNode.id,
-        type: nodeType,
+        type: MapToNodeType(diagramNode.type),
         position: { x: 0, y: 0 },
         parentId: diagramNode.parent,
         data: {

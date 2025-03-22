@@ -1,5 +1,6 @@
 export default interface NodeField {
     name: string;
     type: string;
-    primaryKey?: boolean;
+    isPrimaryKey?: boolean;
+    isRequired?: boolean;
 }

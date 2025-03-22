@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import DiagramNode from "../../data/odyssey-protocol/DiagramNode";
 import { ApiDirection, ApiMethod, Layer, NodeType } from "../../data/odyssey-protocol/Enums";
-import DiagramNodeReducer, { DiagramNodeActionTypes } from "../../reducers/DiagramNodeReducer";
+import diagramNodeReducer, { DiagramNodeActionTypes } from "../../reducers/DiagramNodeReducer";
 import DropdownProperty from "./DropdownProperty";
 import ReadOnlyProperty from "./ReadOnlyProperty";
 import TextProperty from "./TextProperty";
@@ -14,7 +14,7 @@ interface NodePropertiesProps {
 }
 
 const NodeProperties: React.FC<NodePropertiesProps> = ({ node, triggerSave, onSave }) => {
-    const [diagramNode, dispatch] = useReducer(DiagramNodeReducer, null);
+    const [diagramNode, dispatch] = useReducer(diagramNodeReducer, null);
     const diagramNodeInitialValue = useRef(node);
 
     useEffect(() => {

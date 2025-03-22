@@ -1,11 +1,11 @@
 export enum NodeType {
     Component = "component",
-    Database = "db",
-    Cache = "cache",
     API = "api",
-    Blob = "blob",
+    APIFacet = "api-facet",
+    Database = "db",
     Table = "table",
-    APIFacet = "api-facet"
+    Cache = "cache",
+    Blob = "blob",
 }
 
 export enum Layer {

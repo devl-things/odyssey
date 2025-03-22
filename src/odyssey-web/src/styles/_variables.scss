@@ -1,3 +1,4 @@
+@use "bootstrap/scss/bootstrap" as bootstrap;
 @use 'sass:color';
 
 //TIPS [1] this in combination with preload in index.html gets the font to be preloaded and ready to use, 
@@ -17,6 +18,8 @@
   font-style: normal;
 }
 
+$breakpoints: bootstrap.$grid-breakpoints;
+
 // Options
 $prefix: bs- !default;
 
@@ -34,6 +37,7 @@ $font-weight-bold: 600 !default;
 $font-size-base: .825rem !default;
 $font-size-lg: .95rem !default;
 $font-size-sm: .75rem !default;
+$font-size-xs: .625rem !default;
 $headings-font-weight: 500 !default;
 $small-font-size: 80% !default;
 
@@ -88,6 +92,8 @@ $dark: #293042 !default;
 $border-radius-sm: .15rem !default;
 $border-radius: .2rem !default;
 $border-radius-lg: .25rem !default;
+$border-radius-xl: .50rem !default;
+$border-radius-xxl: .60rem !default;
 
 // Transitions
 $transition-appearance: background .4s ease-in-out,
